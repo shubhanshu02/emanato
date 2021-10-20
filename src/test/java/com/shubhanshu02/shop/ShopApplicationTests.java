@@ -1,10 +1,10 @@
-package tech.shubhanshu02.emanato;
+package com.shubhanshu02.shop;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class EmanatoApplicationTests {
+class ShopApplicationTests {
 
 	@Test
 	void contextLoads() {
