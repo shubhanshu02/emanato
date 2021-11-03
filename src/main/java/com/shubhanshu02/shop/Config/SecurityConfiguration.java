@@ -1,37 +1,48 @@
 package com.shubhanshu02.shop.Config;
 
+import com.shubhanshu02.shop.Services.CustomUserDetailService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/", "/greeting", "/insert").permitAll().anyRequest().authenticated().and()
-                .formLogin().loginPage("/login").permitAll().and().logout().permitAll();
+
+    @Autowired
+    CustomUserDetailService userDetailsService;
+
+    @Bean
+    BCryptPasswordEncoder passwordEncoder() {
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        return bCryptPasswordEncoder;
+    }
+
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
 
     @Bean
-    @Override
-    public UserDetailsService userDetailsService() {
-        PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-        // outputs {bcrypt}$2a$10$dXJ3SW6G7P50lGmMkkmwe.20cQQubK3.HZWzG3YB1tlRy.fqvM/BG
-        // remember the password that is printed out and use in the next step
-        System.out.println(encoder.encode("password"));
-
-        UserDetails user = User.withUsername("user")
-                .password("{bcrypt}$2a$10$dXJ3SW6G7P50lGmMkkmwe.20cQQubK3.HZWzG3YB1tlRy.fqvM/BG").roles("USER").build();
-
-        return new InMemoryUserDetailsManager(user);
+    public AuthenticationManager customAuthenticationManager() throws Exception {
+        return authenticationManager();
     }
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.csrf().disable();
+        http.authorizeRequests().antMatchers("/", "/greeting", "/register").permitAll().anyRequest().authenticated()
+                .and().exceptionHandling().accessDeniedPage("/403").and().formLogin().loginPage("/login")
+                .defaultSuccessUrl("/welcome", true).failureUrl("/login?error=true").usernameParameter("email")
+                .passwordParameter("password").and().logout().logoutUrl("/logout").logoutSuccessUrl("/");
+    }
+
 }

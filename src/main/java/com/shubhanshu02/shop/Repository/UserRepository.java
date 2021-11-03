@@ -9,7 +9,9 @@ import com.shubhanshu02.shop.Models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class UserRepository implements UserRepositoryInterface {
 
     @Autowired
@@ -19,8 +21,7 @@ public class UserRepository implements UserRepositoryInterface {
         @Override
         public User mapRow(ResultSet res, int rowNum) throws SQLException {
             return new User(res.getString("firstName"), res.getString("middleName"), res.getString("lastName"),
-                    res.getString("email"), res.getString("password"), res.getBoolean("isStaff"),
-                    res.getString("address"));
+                    res.getString("email"), res.getString("password"), res.getString("role"), res.getString("address"));
         }
     };
 
@@ -32,9 +33,9 @@ public class UserRepository implements UserRepositoryInterface {
 
     @Override
     public void save(User user) {
-        String query = "INSERT INTO users (firstName, middleName, lastName, email, password, isStaff, address) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO users (firstName, middleName, lastName, email, password, role, address) VALUES (?, ?, ?, ?, ?, ?, ?)";
         jdbcTemplate.update(query, user.getFirstName(), user.getMiddleName(), user.getLastName(), user.getEmail(),
-                user.getPassword(), user.checkIfStaff(), user.getAddress());
+                user.getPassword(), user.getRole(), user.getAddress());
     }
 
 }

@@ -6,17 +6,17 @@ public class User {
     private String lastName;
     private String email;
     private String password;
-    private Boolean isStaff;
+    private String role;
     private String address;
 
-    public User(String firstName, String middleName, String lastName, String email, String password, Boolean isStaff,
+    public User(String firstName, String middleName, String lastName, String email, String password, String role,
             String address) {
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
-        this.isStaff = isStaff;
+        this.role = role;
         this.address = address;
     }
 
@@ -60,12 +60,12 @@ public class User {
         this.password = password;
     }
 
-    public Boolean checkIfStaff() {
-        return isStaff;
+    public String getRole() {
+        return role;
     }
 
-    public void setIsStaff(Boolean isStaff) {
-        this.isStaff = isStaff;
+    public void setrole(String role) {
+        this.role = role;
     }
 
     public String getAddress() {
@@ -79,8 +79,8 @@ public class User {
     @Override
     public String toString() {
         return "User{" + "firstName='" + firstName + '\'' + ", middleName='" + middleName + '\'' + ", lastName='"
-                + lastName + '\'' + ", email='" + email + '\'' + ", password='" + password + '\'' + ", isStaff="
-                + isStaff + ", address='" + address + '\'' + '}';
+                + lastName + '\'' + ", email='" + email + '\'' + ", password='" + password + '\'' + ", role=" + role
+                + ", address='" + address + '\'' + '}';
     }
 
     public User() {
