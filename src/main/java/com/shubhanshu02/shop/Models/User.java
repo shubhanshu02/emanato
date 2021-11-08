@@ -1,9 +1,12 @@
 package com.shubhanshu02.shop.Models;
 
+import org.springframework.data.annotation.Id;
+
 public class User {
     private String firstName;
     private String middleName;
     private String lastName;
+    @Id
     private String email;
     private String password;
     private String role;

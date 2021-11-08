@@ -39,10 +39,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
-        http.authorizeRequests().antMatchers("/", "/greeting", "/register").permitAll().anyRequest().authenticated()
-                .and().exceptionHandling().accessDeniedPage("/403").and().formLogin().loginPage("/login")
-                .defaultSuccessUrl("/welcome", true).failureUrl("/login?error=true").usernameParameter("email")
-                .passwordParameter("password").and().logout().logoutUrl("/logout").logoutSuccessUrl("/");
+        http.authorizeRequests().antMatchers("/", "/greeting", "/register", "/login").permitAll().anyRequest()
+                .authenticated().and().exceptionHandling().accessDeniedPage("/403").and().formLogin()
+                .loginPage("/login").defaultSuccessUrl("/", true).failureUrl("/login?error=true")
+                .usernameParameter("email").passwordParameter("password").and().logout().logoutUrl("/logout")
+                .logoutSuccessUrl("/");
     }
 
 }

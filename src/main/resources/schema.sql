@@ -1,11 +1,9 @@
-
-
 CREATE TABLE users (
-    id INTEGER NOT NULL AUTO_INCREMENT,
     firstName VARCHAR(255) NOT NULL,
-    middleName VARCHAR(255) NOT NULL,
+    middleName VARCHAR(255) NOT NULL DEFAULT "",
     lastName VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL PRIMARY KEY,
     password VARCHAR(255) NOT NULL,
-    PRIMARY KEY (email)
+    role VARCHAR(63) NOT NULL DEFAULT "ROLE_USER",
+    address VARCHAR(511)
 );

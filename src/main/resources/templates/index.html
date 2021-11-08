@@ -6,6 +6,10 @@
   </head>
   <body>
       <h2>Home</h2>
+      <p>
+        Logged In: <span sec:authorize="isAuthenticated()">Yes</span>
+        <span sec:authorize="isAnonymous()">no</span>
+      </p>
     <p th:text="'Hello, ' + ${name} + '!'" />
   </body>
 </html>

@@ -15,7 +15,7 @@ import org.springframework.stereotype.Repository;
 public class UserRepository implements UserRepositoryInterface {
 
     @Autowired
-    JdbcTemplate jdbcTemplate;
+    private JdbcTemplate jdbcTemplate;
 
     private RowMapper<User> userRowMapper = new RowMapper<User>() {
         @Override
@@ -33,7 +33,10 @@ public class UserRepository implements UserRepositoryInterface {
 
     @Override
     public void save(User user) {
+        System.err.println(this.jdbcTemplate);
         String query = "INSERT INTO users (firstName, middleName, lastName, email, password, role, address) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        System.out.println(user.toString());
+        // TODO: Use BCryptPasswordEncoder to hash the password
         jdbcTemplate.update(query, user.getFirstName(), user.getMiddleName(), user.getLastName(), user.getEmail(),
                 user.getPassword(), user.getRole(), user.getAddress());
     }

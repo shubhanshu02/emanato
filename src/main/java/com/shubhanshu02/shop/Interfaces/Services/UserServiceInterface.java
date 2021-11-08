@@ -6,4 +6,7 @@ public interface UserServiceInterface {
     User registerNewUserAccount(String firstName, String middleName, String lastName, String email, String password,
             String role, String address);
 
+    public User findUserbyEmail(String email);
+
+    public void save(User user);
 }
