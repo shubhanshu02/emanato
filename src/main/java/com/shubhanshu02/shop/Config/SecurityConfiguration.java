@@ -14,7 +14,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
-@EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -38,12 +37,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
         http.csrf().disable();
-        http.authorizeRequests().antMatchers("/", "/greeting", "/register", "/login").permitAll().anyRequest()
-                .authenticated().and().exceptionHandling().accessDeniedPage("/403").and().formLogin()
-                .loginPage("/login").defaultSuccessUrl("/", true).failureUrl("/login?error=true")
+        http.authorizeRequests().antMatchers("/", "/greeting", "/register", "/login").permitAll()
+                // .and().authorizeRequests().anyRequest().authenticated()
+                .and().formLogin().loginPage("/login").defaultSuccessUrl("/", true).failureUrl("/login?error=true")
                 .usernameParameter("email").passwordParameter("password").and().logout().logoutUrl("/logout")
-                .logoutSuccessUrl("/");
+                .logoutSuccessUrl("/").and().exceptionHandling().accessDeniedPage("/403");
     }
 
 }
