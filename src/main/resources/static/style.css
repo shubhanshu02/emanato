@@ -1071,7 +1071,7 @@ body {
 	11. Shop-page
 ----------------------------------- */
 .heading-banner-area {
-  background: rgba(0, 0, 0, 0) url("img/bg/1.jpg") no-repeat scroll center center / cover ;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("img/bg/1.jpg") no-repeat scroll center center / cover;
 }
 .heading-banner-title h2 {
   color: #fff;
@@ -2034,8 +2034,19 @@ input.cart-plus-minus-box {
 
 
 
+@font-face {
+  font-family: 'Rooster-PersonalUse';
+  src: url('../fonts/RoosterPersonalUse-3z8d8.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+.rooster {
+  display: inline-block;
+  font: normal normal normal 14px/1 'Rooster-PersonalUse';
 
-
-
-
-
+  font-size: 4rem;
+  color: #b35b5b;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
