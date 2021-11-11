@@ -11,6 +11,9 @@ public class Category {
         this.supplierName = supplierName;
     }
 
+    public Category() {
+    }
+
     public int getId() {
         return id;
     }

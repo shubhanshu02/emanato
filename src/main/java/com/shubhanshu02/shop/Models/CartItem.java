@@ -4,13 +4,11 @@ public class CartItem {
 
     private int productId;
     private int productQuantity;
-    private int productPrice;
     private int cartId;
 
-    public CartItem(int productId, int productQuantity, int productPrice, int cartId) {
+    public CartItem(int productId, int productQuantity, int cartId) {
         this.productId = productId;
         this.productQuantity = productQuantity;
-        this.productPrice = productPrice;
         this.cartId = cartId;
     }
 
@@ -31,11 +29,8 @@ public class CartItem {
     }
 
     public int getProductPrice() {
-        return productPrice;
-    }
-
-    public void setProductPrice(int productPrice) {
-        this.productPrice = productPrice;
+        // TODO:SQL IMPLEMENTATION
+        return 0;
     }
 
     public int getCartId() {
@@ -46,14 +41,10 @@ public class CartItem {
         this.cartId = cartId;
     }
 
-    public int itemTotal() {
-        return productQuantity * productPrice;
-    }
-
     @Override
     public String toString() {
-        return "CartItem{" + "productId=" + productId + ", productQuantity=" + productQuantity + ", productPrice="
-                + productPrice + ", cartId=" + cartId + '}';
+        return "CartItem{" + "productId=" + productId + ", productQuantity=" + productQuantity + ", cartId=" + cartId
+                + '}';
     }
 
 }

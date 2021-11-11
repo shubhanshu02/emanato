@@ -1,21 +1,20 @@
 package com.shubhanshu02.shop.Services;
 
-import com.shubhanshu02.shop.Interfaces.Repository.UserRepositoryInterface;
-import com.shubhanshu02.shop.Interfaces.Services.UserServiceInterface;
 import com.shubhanshu02.shop.Models.User;
+import com.shubhanshu02.shop.Repository.UserRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserService implements UserServiceInterface {
+public class UserService {
 
     @Autowired
-    UserRepositoryInterface userRepository;
+    UserRepository userRepository;
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    @Override
     public User registerNewUserAccount(String firstName, String middleName, String lastName, String email,
             String password, String role, String address) {
         try {
@@ -30,7 +29,6 @@ public class UserService implements UserServiceInterface {
         return null;
     }
 
-    @Override
     public User findUserbyEmail(String email) {
         try {
             return userRepository.findByEmail(email);

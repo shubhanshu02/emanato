@@ -39,10 +39,8 @@ public class RegistrationController {
         if (userService.findUserbyEmail(user.getEmail()) != null) {
             return "redirect:/registerError";
         }
-        User usr = new User("ds", "fds", "fds", "df@df.com", "fds", "fgd", "fds");
-        userService.save(usr);
-        System.out.println(user);
-        return "redirect:index";
+        userService.save(user);
+        return "redirect:/";
     }
 
 }

@@ -13,32 +13,32 @@ public class Order {
 
     private int id;
     private String customerName;
-    private Date date;
+    private Date orderDate;
     private int total;
-    private Status status;
+    private Status orderStatus;
     private int userEmail;
     private TransactionMode transactionMode;
     private String onlineTransactionID;
 
-    public Order(int id, String customerName, Date date, int total, String status, int userEmail,
+    public Order(int id, String customerName, Date orderDate, int total, String orderStatus, int userEmail,
             String transactionMode) {
         this.id = id;
         this.customerName = customerName;
-        this.date = date;
+        this.orderDate = orderDate;
         this.total = total;
-        this.status = Status.valueOf(status);
+        this.orderStatus = Status.valueOf(orderStatus);
         this.userEmail = userEmail;
         this.transactionMode = TransactionMode.valueOf(transactionMode);
 
     }
 
-    public Order(int id, String customerName, Date date, int total, String status, int userEmail,
+    public Order(int id, String customerName, Date orderDate, int total, String orderStatus, int userEmail,
             String transactionMode, String onlineTransactionID) {
         this.id = id;
         this.customerName = customerName;
-        this.date = date;
+        this.orderDate = orderDate;
         this.total = total;
-        this.status = Status.valueOf(status);
+        this.orderStatus = Status.valueOf(orderStatus);
         this.userEmail = userEmail;
         this.transactionMode = TransactionMode.valueOf(transactionMode);
         this.onlineTransactionID = onlineTransactionID;
@@ -61,11 +61,11 @@ public class Order {
     }
 
     public Date getDate() {
-        return this.date;
+        return this.orderDate;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setDate(Date orderDate) {
+        this.orderDate = orderDate;
     }
 
     public int getTotal() {
@@ -77,11 +77,11 @@ public class Order {
     }
 
     public Status getStatus() {
-        return this.status;
+        return this.orderStatus;
     }
 
-    public void setStatus(Status status) {
-        this.status = status;
+    public void setStatus(Status orderStatus) {
+        this.orderStatus = orderStatus;
     }
 
     public int getUserEmail() {

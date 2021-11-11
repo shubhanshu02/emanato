@@ -3,7 +3,6 @@ package com.shubhanshu02.shop.Repository;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.shubhanshu02.shop.Interfaces.Repository.UserRepositoryInterface;
 import com.shubhanshu02.shop.Models.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class UserRepository implements UserRepositoryInterface {
+public class UserRepository {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -25,17 +24,18 @@ public class UserRepository implements UserRepositoryInterface {
         }
     };
 
-    @Override
     public User findByEmail(String email) {
         String query = "SELECT * FROM users WHERE email = ?";
         return jdbcTemplate.queryForObject(query, userRowMapper, email);
     }
 
-    @Override
     public void save(User user) {
         System.err.println(this.jdbcTemplate);
         String query = "INSERT INTO users (firstName, middleName, lastName, email, password, role, address) VALUES (?, ?, ?, ?, ?, ?, ?)";
         System.out.println(user.toString());
+        if (user.getRole() == null) {
+            user.setrole("ROLE_USER");
+        }
         // TODO: Use BCryptPasswordEncoder to hash the password
         jdbcTemplate.update(query, user.getFirstName(), user.getMiddleName(), user.getLastName(), user.getEmail(),
                 user.getPassword(), user.getRole(), user.getAddress());

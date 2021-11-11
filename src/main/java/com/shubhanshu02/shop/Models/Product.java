@@ -3,22 +3,27 @@ package com.shubhanshu02.shop.Models;
 public class Product {
 
     private int mrp;
-    private String id;
-    private String name;
+    private int id;
+    private String productName;
+    private String ProductImage;
     private String size;
     private int categoryId;
     private int quantityAvailable;
     private String details;
 
-    public Product(int mrp, String id, String name, String size, int categoryId, int quantityAvailable,
-            String details) {
+    public Product(int mrp, int id, String productName, String ProductImage, String size, int categoryId,
+            int quantityAvailable, String details) {
         this.mrp = mrp;
         this.id = id;
-        this.name = name;
+        this.productName = productName;
+        this.ProductImage = ProductImage;
         this.size = size;
         this.categoryId = categoryId;
         this.quantityAvailable = quantityAvailable;
         this.details = details;
+    }
+
+    public Product() {
     }
 
     public int getMrp() {
@@ -29,20 +34,24 @@ public class Product {
         this.mrp = mrp;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public String getProductName() {
+        return this.productName;
     }
 
-    public String getName() {
-        return name;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getProductImage() {
+        return this.ProductImage;
+    }
+
+    public void setProductImage(String ProductImage) {
+        this.ProductImage = ProductImage;
     }
 
     public String getSize() {
@@ -79,13 +88,13 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" + "mrp=" + mrp + ", id='" + id + '\'' + ", name='" + name + '\'' + ", size='" + size + '\''
-                + ", categoryId=" + categoryId + ", quantityAvailable=" + quantityAvailable + ", details='" + details
-                + '\'' + '}';
+        return "Product{" + "mrp=" + mrp + ", id='" + id + '\'' + ", productName='" + productName + '\'' + ", size='"
+                + size + '\'' + ", categoryId=" + categoryId + ", quantityAvailable=" + quantityAvailable
+                + ", details='" + details + '\'' + '}';
     }
 
     public String toDisplayString() {
-        return name + " " + size;
+        return productName + " " + size;
     }
 
 }
