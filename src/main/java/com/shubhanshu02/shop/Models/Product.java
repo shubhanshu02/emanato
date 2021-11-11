@@ -4,17 +4,17 @@ public class Product {
 
     private int mrp;
     private String id;
-    private String name;
+    private String productName;
     private String size;
     private int categoryId;
     private int quantityAvailable;
     private String details;
 
-    public Product(int mrp, String id, String name, String size, int categoryId, int quantityAvailable,
+    public Product(int mrp, String id, String productName, String size, int categoryId, int quantityAvailable,
             String details) {
         this.mrp = mrp;
         this.id = id;
-        this.name = name;
+        this.productName = productName;
         this.size = size;
         this.categoryId = categoryId;
         this.quantityAvailable = quantityAvailable;
@@ -38,11 +38,11 @@ public class Product {
     }
 
     public String getName() {
-        return name;
+        return productName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String productName) {
+        this.productName = productName;
     }
 
     public String getSize() {
@@ -79,13 +79,13 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" + "mrp=" + mrp + ", id='" + id + '\'' + ", name='" + name + '\'' + ", size='" + size + '\''
+        return "Product{" + "mrp=" + mrp + ", id='" + id + '\'' + ", productName='" + productName + '\'' + ", size='" + size + '\''
                 + ", categoryId=" + categoryId + ", quantityAvailable=" + quantityAvailable + ", details='" + details
                 + '\'' + '}';
     }
 
     public String toDisplayString() {
-        return name + " " + size;
+        return productName + " " + size;
     }
 
 }

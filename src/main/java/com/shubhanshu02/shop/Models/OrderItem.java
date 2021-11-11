@@ -4,13 +4,11 @@ public class OrderItem {
 
     private int productId;
     private int productQuantity;
-    private int productPrice;
     private int orderId;
 
-    public OrderItem(int productId, int productQuantity, int productPrice, int orderId) {
+    public OrderItem(int productId, int productQuantity, int orderId) {
         this.productId = productId;
         this.productQuantity = productQuantity;
-        this.productPrice = productPrice;
         this.orderId = orderId;
     }
 
@@ -31,11 +29,8 @@ public class OrderItem {
     }
 
     public int getProductPrice() {
-        return productPrice;
-    }
-
-    public void setProductPrice(int productPrice) {
-        this.productPrice = productPrice;
+        // TODO: SQL IMPLEMENTATION
+        return 0;
     }
 
     public int getOrderId() {
@@ -48,8 +43,8 @@ public class OrderItem {
 
     @Override
     public String toString() {
-        return "OrderItem{" + "productId=" + productId + ", productQuantity=" + productQuantity + ", productPrice="
-                + productPrice + ", orderId=" + orderId + '}';
+        return "OrderItem{" + "productId=" + productId + ", productQuantity=" + productQuantity + ", orderId=" + orderId
+                + '}';
     }
 
     @Override
@@ -65,8 +60,6 @@ public class OrderItem {
             return false;
         if (productQuantity != orderItem.productQuantity)
             return false;
-        if (productPrice != orderItem.productPrice)
-            return false;
         return orderId == orderItem.orderId;
     }
 
@@ -74,7 +67,6 @@ public class OrderItem {
     public int hashCode() {
         int result = productId;
         result = 31 * result + productQuantity;
-        result = 31 * result + productPrice;
         result = 31 * result + orderId;
         return result;
     }

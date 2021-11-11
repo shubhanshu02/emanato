@@ -4,14 +4,14 @@ import java.sql.Date;
 
 public class StoreExpenditure {
     public int transactionId;
-    public Date date;
+    public Date transactionDate;
     public int amount;
     public String userEmail;
     public String summary;
 
     public StoreExpenditure(int transactionId, Date date, int amount, String userEmail, String summary) {
         this.transactionId = transactionId;
-        this.date = date;
+        this.transactionDate = date;
         this.amount = amount;
         this.userEmail = userEmail;
         this.summary = summary;
@@ -26,11 +26,11 @@ public class StoreExpenditure {
     }
 
     public Date getDate() {
-        return date;
+        return transactionDate;
     }
 
     public void setDate(Date date) {
-        this.date = date;
+        this.transactionDate = date;
 
     }
     public int getAmount() {
@@ -59,7 +59,7 @@ public class StoreExpenditure {
 
     @Override
     public String toString() {
-        return "StoreExpenditure{" + "transactionId=" + transactionId + ", date=" + date + ", amount=" + amount
+        return "StoreExpenditure{" + "transactionId=" + transactionId + ", date=" + transactionDate + ", amount=" + amount
                 + ", userEmail=" + userEmail + ", summary='" + summary + '\'' + '}';
     }
 
