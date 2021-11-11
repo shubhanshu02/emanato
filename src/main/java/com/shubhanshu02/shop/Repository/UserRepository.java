@@ -36,6 +36,9 @@ public class UserRepository implements UserRepositoryInterface {
         System.err.println(this.jdbcTemplate);
         String query = "INSERT INTO users (firstName, middleName, lastName, email, password, role, address) VALUES (?, ?, ?, ?, ?, ?, ?)";
         System.out.println(user.toString());
+        if (user.getRole() == null) {
+            user.setrole("ROLE_USER");
+        }
         // TODO: Use BCryptPasswordEncoder to hash the password
         jdbcTemplate.update(query, user.getFirstName(), user.getMiddleName(), user.getLastName(), user.getEmail(),
                 user.getPassword(), user.getRole(), user.getAddress());
