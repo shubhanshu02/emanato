@@ -7,12 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class HomeController {
+public class ContactController {
 
-	@GetMapping("/")
-	public String home(Model model) {
-		model.addAttribute("name", "asdas");
-
-		return "index";
-	}
+    @GetMapping("/contact")
+    public String home(Model model) {
+        return "contact";
+    }
 }
