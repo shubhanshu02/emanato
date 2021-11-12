@@ -47,6 +47,17 @@ CREATE TABLE IF NOT EXISTS storeExpenditure (
   FOREIGN KEY (userEmail) REFERENCES users(email)
 );
 
+
+CREATE TABLE IF NOT EXISTS cart (
+  userEmail VARCHAR(255) NOT NULL,
+  productId BIGINT NOT NULL,
+  quantity INT NOT NULL,
+  PRIMARY KEY (userEmail, productId),
+  FOREIGN KEY (userEmail) REFERENCES users(email),
+  FOREIGN KEY (productId) REFERENCES Product(id)
+);
+
+
 CREATE TABLE IF NOT EXISTS cart (
   id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   total INT NOT NULL,

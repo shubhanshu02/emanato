@@ -1,50 +1,52 @@
 package com.shubhanshu02.shop.Models;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+
 public class CartItem {
 
+    private String userEmail;
     private int productId;
-    private int productQuantity;
-    private int cartId;
+    private int quantity;
 
-    public CartItem(int productId, int productQuantity, int cartId) {
-        this.productId = productId;
-        this.productQuantity = productQuantity;
-        this.cartId = cartId;
+    @Autowired
+    JdbcTemplate jdbcTemplate;
+
+    public String getUserEmail() {
+        return this.userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 
     public int getProductId() {
-        return productId;
+        return this.productId;
     }
 
     public void setProductId(int productId) {
         this.productId = productId;
     }
 
-    public int getProductQuantity() {
-        return productQuantity;
+    public int getQuantity() {
+        return this.quantity;
     }
 
-    public void setProductQuantity(int productQuantity) {
-        this.productQuantity = productQuantity;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
-    public int getProductPrice() {
-        // TODO:SQL IMPLEMENTATION
-        return 0;
+    public CartItem() {
     }
 
-    public int getCartId() {
-        return cartId;
+    public CartItem(String userEmail, int productId, int quantity) {
+        this.userEmail = userEmail;
+        this.productId = productId;
+        this.quantity = quantity;
     }
 
-    public void setCartId(int cartId) {
-        this.cartId = cartId;
+    public int getItemPrice() {
+        String query = "SELECT MRP FROM Product WHERE id = ?";
+        return jdbcTemplate.queryForObject(query, Integer.class, productId);
     }
-
-    @Override
-    public String toString() {
-        return "CartItem{" + "productId=" + productId + ", productQuantity=" + productQuantity + ", cartId=" + cartId
-                + '}';
-    }
-
 }

@@ -361,7 +361,7 @@
 							-->
 							<div class="col-md-12">
 								<div class="row">
-									<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12" th:each="product: ${products}" >
+									<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12" th:each="product: ${products}" th:if="${product.quantityAvailable > 0}">
 										<div class="single-product">
 											<div class="product-img">
 												<span class="pro-price-2">
@@ -377,7 +377,14 @@
 												</div>
 												<div class="fix">
 													<span class="pro-rating">
-														<button href="#" data-text="Add to Cart" class="button-one submit-button mt-15">Add to Cart</button>
+														<form action="/add/cartItem" method="post">
+															<div class="text-left">
+																<p class="text-muted">Quantity</p>
+																<input type="hidden" name="id" th:value="${product.id}">
+																<input type="number" name="quantity" value="1" min="1" th:max="${product.quantityAvailable}" >
+															</div>
+															<button type="submit" data-text="Add to Cart" class="button-one submit-button mt-15">Add to Cart</button>
+														</form>
 													</span>
 												</div>
 												<!--
