@@ -5,8 +5,6 @@ import org.springframework.stereotype.Controller;
 import java.io.IOException;
 import java.util.List;
 
-import javax.xml.catalog.CatalogResolver;
-
 import com.shubhanshu02.shop.FileUploadUtil;
 import com.shubhanshu02.shop.Models.Category;
 import com.shubhanshu02.shop.Models.Product;
@@ -27,7 +25,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
 public class CatalogController {
@@ -40,7 +37,8 @@ public class CatalogController {
 
     @GetMapping("/catalog")
     public String catalog(Model model) {
-
+        List<Product> products = productRepository.listAll();
+        model.addAttribute("products", products);
         return "catalog";
     }
 
@@ -68,7 +66,7 @@ public class CatalogController {
         }
 
         productRepository.save(product);
-        String uploadDir = "product-photos/" + product.getId();
+        String uploadDir = "product-photos/";
         FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
         return "redirect:addProduct?success";
     }

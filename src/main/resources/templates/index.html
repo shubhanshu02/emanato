@@ -149,14 +149,14 @@
 							<li><a th:href="@{/}">Home</a></li>
 							<li><a sec:authorize="isAnonymous()" th:href="@{/login}">Login</a></li>
 							<li><a sec:authorize="isAnonymous()" th:href="@{/register}">Register</a></li>
-							<li><a href="shop.html">Catalog</a></li>
-							<li><a href="shop.html">lookbook</a></li>
+							<li><a th:href="@{/catalog}">Catalog</a></li>
+							<li><a th:href="@{/catalog}">lookbook</a></li>
 							<li><a href="blog.html">blog</a></li>
 							<li><a href="#">pages</a>
 								<div class="sub-menu menu-scroll">
 									<ul>
 										<li class="menu-title">Page's</li>
-										<li><a href="shop.html">Shop</a></li>
+										<li><a th:href="@{/catalog}">Shop</a></li>
 										<li><a href="single-product.html">Single Product</a></li>
 										<li><a href="cart.html">Shopping Cart</a></li>
 										<li><a href="wishlist.html">Wishlist</a></li>
@@ -174,6 +174,7 @@
 							</li>
 							<li><a href="about.html">about us</a></li>
 							<li><a th:href="@{contact}">contact</a></li>
+							<li><a sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -189,13 +190,13 @@
 								<nav id="dropdown">
 									<ul>
 										<li><a th:href="@{/}">Home</a></li>
-										<li><a href="shop.html">products</a></li>
-										<li><a href="shop.html">Catalog</a></li>
-										<li><a href="shop.html">lookbook</a></li>
+										<li><a th:href="@{/catalog}">products</a></li>
+										<li><a th:href="@{/catalog}">Catalog</a></li>
+										<li><a th:href="@{/catalog}">lookbook</a></li>
 										<li><a href="blog.html">blog</a></li>
 										<li><a href="#">pages</a>
 											<ul>
-												<li><a href="shop.html">Shop</a></li>
+												<li><a th:href="@{/catalog}">Shop</a></li>
 												<li><a href="single-product.html">Single Product</a></li>
 												<li><a href="cart.html">Shopping Cart</a></li>
 												<li><a href="wishlist.html">Wishlist</a></li>
@@ -1745,7 +1746,7 @@
 											</div>
 											<hr />
 										</div>
-										<a href="shop.html" class="see-all">See all features</a>
+										<a th:href="@{/catalog}" class="see-all">See all features</a>
 										<div class="quick-add-to-cart">
 											<form method="post" class="cart">
 												<div class="numbers-row">

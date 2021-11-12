@@ -60,7 +60,7 @@ public class Product {
     public String getPhotosImagePath() {
         if (productImage == null)
             return null;
-        return "/product-photos/" + id + "/" + productImage;
+        return "/product-photos/" + productImage;
     }
 
     public String getSize() {
