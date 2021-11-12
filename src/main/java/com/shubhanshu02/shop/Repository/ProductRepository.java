@@ -7,6 +7,7 @@ import java.util.List;
 import com.shubhanshu02.shop.Models.Product;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -28,25 +29,35 @@ public class ProductRepository {
     };
 
     public List<Product> listAll() {
-        String sql = "SELECT * FROM product";
+        String sql = "SELECT * FROM Product";
         return jdbcTemplate.query(sql, productRowMapper);
 
     }
 
     public Product findByName(String name) {
-        String sql = "SELECT * FROM product WHERE productName = ?";
-        return jdbcTemplate.queryForObject(sql, productRowMapper, name);
+        String sql = "SELECT * FROM Product WHERE productName = ?";
+
+        try {
+            return jdbcTemplate.queryForObject(sql, productRowMapper, name);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
     }
 
     public void save(Product product) {
-        String query = "INSERT INTO product (id, productName, ProductImage, size, mrp, categoryId, quantityAvailable, details) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO Product (id, productName, ProductImage, size, mrp, categoryId, quantityAvailable, details) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         jdbcTemplate.update(query, product.getId(), product.getProductName(), product.getProductImage(),
                 product.getSize(), product.getMrp(), product.getCategoryId(), product.getQuantityAvailable(),
                 product.getDetails());
     }
 
+    public Boolean delete(Product product) {
+        String query = "DELETE FROM Product WHERE productName = ?";
+        return jdbcTemplate.update(query, product.getProductName()) > 0;
+    }
+
     public List<Product> filterByCategory(String categoryName) {
-        String sql = "SELECT * FROM product WHERE categoryId = (SELECT id FROM category WHERE categoryName = ?)";
+        String sql = "SELECT * FROM Product WHERE categoryId = (SELECT id FROM category WHERE categoryName = ?)";
         return jdbcTemplate.query(sql, productRowMapper, categoryName);
     }
 }
