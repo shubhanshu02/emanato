@@ -34,7 +34,7 @@ public class ProductRepository {
 
     }
 
-    public Product findByName(String name) {
+    public Product getProductbyName(String name) {
         String sql = "SELECT * FROM Product WHERE productName = ?";
 
         try {
@@ -42,6 +42,11 @@ public class ProductRepository {
         } catch (EmptyResultDataAccessException e) {
             return null;
         }
+    }
+
+    public Product getProductById(int productId) {
+        String query = "SELECT * FROM Product WHERE id = ?";
+        return jdbcTemplate.queryForObject(query, productRowMapper, productId);
     }
 
     public void save(Product product) {

@@ -9,9 +9,6 @@ public class CartItem {
     private int productId;
     private int quantity;
 
-    @Autowired
-    JdbcTemplate jdbcTemplate;
-
     public String getUserEmail() {
         return this.userEmail;
     }
@@ -45,8 +42,4 @@ public class CartItem {
         this.quantity = quantity;
     }
 
-    public int getItemPrice() {
-        String query = "SELECT MRP FROM Product WHERE id = ?";
-        return jdbcTemplate.queryForObject(query, Integer.class, productId);
-    }
 }

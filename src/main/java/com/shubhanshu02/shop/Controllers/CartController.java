@@ -1,9 +1,13 @@
 package com.shubhanshu02.shop.Controllers;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.shubhanshu02.shop.Models.CartItem;
+import com.shubhanshu02.shop.Models.Product;
 import com.shubhanshu02.shop.Repository.CartRepository;
+import com.shubhanshu02.shop.Repository.ProductRepository;
 import com.shubhanshu02.shop.Services.SecurityService;
 import com.shubhanshu02.shop.Services.UserService;
 
@@ -24,6 +28,8 @@ public class CartController {
     UserService userService;
     @Autowired
     CartRepository cartRepository;
+    @Autowired
+    ProductRepository productRepository;
 
     @Secured({ "ROLE_USER", "ROLE_STAFF" })
     @GetMapping("/cart")
@@ -34,7 +40,19 @@ public class CartController {
             return "redirect:/login";
         }
         List<CartItem> cartItems = cartRepository.getCartItems(userEmail);
+        int orderTotal = 0;
+        Map<Object, Object> cartProduct = new HashMap<Object, Object>();
+
+        for (CartItem cartItem : cartItems) {
+            Product product = productRepository.getProductById(cartItem.getProductId());
+            cartProduct.put(cartItem, product);
+            orderTotal += product.getMrp() * cartItem.getQuantity();
+        }
+
         model.addAttribute("cartItems", cartItems);
+        model.addAttribute("cartProduct", cartProduct);
+        model.addAttribute("orderTotal", orderTotal + 35 + 15);
+        System.out.println(cartItems.size());
         return "cart";
     }
 

@@ -61,7 +61,7 @@ public class CatalogController {
 
         String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
         product.setProductImage(fileName);
-        if (productRepository.findByName(product.getProductName()) != null) {
+        if (productRepository.getProductbyName(product.getProductName()) != null) {
             return "redirect:addProduct?error";
         }
 
@@ -75,7 +75,7 @@ public class CatalogController {
     @ResponseBody
     public String deleteCategory(BindingResult result, WebRequest request, Model model, RedirectAttributes attributes) {
         String name = request.getParameter("name");
-        Product product = productRepository.findByName(name);
+        Product product = productRepository.getProductbyName(name);
         if (product == null) {
             return "NO";
         }
