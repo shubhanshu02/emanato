@@ -266,10 +266,18 @@
 																</td>
 																<td class="product-price">₹<span th:text="${prod.mrp}" /></td>
 																<td class="product-quantity">
-																	<div class="cart-plus-minus">
-																		
-																		<input type="text" th:value="${cartItem.quantity}" name="qtybutton" class="cart-plus-minus-box">
-																	</div>
+																	<form action="/add/cartItem" method="post">
+																		<div class="cart-plus-minus">
+																			<div class="text-left">
+																				<input type="hidden" name="id" th:value="${prod.id}">
+																				<input
+																					type="text" th:value="${cartItem.quantity}" name="quantity"
+																					min="1" th:max="${prod.quantityAvailable}"
+																					class="cart-plus-minus-box">
+																			</div>
+																		</div>
+																		<button type="submit" data-text="edit" class="button-one quantity-edit-button mt-15">Edit</button>
+																	</form>
 																</td>
 																<td class="product-subtotal" th:with="total = ${prod.mrp * cartItem.quantity}"><span th:text="${total}" /></td>
 																<td class="product-remove">
@@ -283,10 +291,15 @@
 											<div class="row">
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<div class="customer-login mt-30">
+														<!--
 														<h4 class="title-1 title-border text-uppercase">coupon discount</h4>
 														<p class="text-gray">Enter your coupon code if you have one!</p>
 														<input type="text" placeholder="Enter your code here.">
 														<button type="submit" data-text="apply coupon" class="button-one submit-button mt-15">apply coupon</button>
+														-->
+														<h4 class="title-1 title-border text-uppercase">coupon discount</h4>
+														<p class="text-gray">Enter your coupon code if you have one!</p>
+														<input type="text" placeholder="Enter your code here.">
 													</div>
 												</div>
 												<div class="col-md-6 col-sm-6 col-xs-12">
