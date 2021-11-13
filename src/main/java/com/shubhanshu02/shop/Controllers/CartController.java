@@ -15,8 +15,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 
 @Controller
@@ -63,6 +65,12 @@ public class CartController {
             return "redirect:/login";
         }
 
+        for (String nam : request.getParameterMap().keySet()) {
+            System.out.println(nam + " at  " + request.getParameter(nam));
+
+        }
+        System.out.println("YEs " + request.getParameter("id") + " qty = " + request.getParameter("quantity"));
+
         int productId = Integer.parseInt(request.getParameter("id"));
         int quantity = Integer.parseInt(request.getParameter("quantity"));
 
@@ -72,6 +80,41 @@ public class CartController {
         }
 
         return "redirect:/cart";
+    }
+
+    @PostMapping("/update/cartItem")
+    @ResponseBody
+    public String updateCartItem(WebRequest request) {
+        String userEmail = securityService.findLoggedInUsername();
+        if (userEmail == null) {
+            return "false";
+        }
+
+        int productId = Integer.parseInt(request.getParameter("id"));
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
+
+        CartItem cartItem = new CartItem(userEmail, productId, quantity);
+        if (!cartRepository.updateQuantity(cartItem)) {
+            return "false";
+        }
+
+        return "true";
+    }
+
+    @DeleteMapping("/delete/cartItem")
+    @ResponseBody
+    public String deleteCartItem(WebRequest request) {
+        String userEmail = securityService.findLoggedInUsername();
+        if (userEmail == null) {
+            return "false";
+        }
+
+        int productId = Integer.parseInt(request.getParameter("id"));
+        if (!cartRepository.deleteFromCart(productId, userEmail)) {
+            return "false";
+        }
+
+        return "true";
     }
 
 }

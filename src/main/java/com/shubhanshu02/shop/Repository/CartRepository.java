@@ -26,14 +26,15 @@ public class CartRepository {
         }
     }
 
-    public void deleteFromCart(int cartItemId) {
-        String sql = "DELETE FROM cart WHERE cart_id = ?";
-        jdbcTemplate.update(sql, cartItemId);
+    public Boolean deleteFromCart(int productId, String userEmail) {
+        String sql = "DELETE FROM cart WHERE productId = ? AND userEmail = ?";
+        return jdbcTemplate.update(sql, productId, userEmail) > 0;
     }
 
     public Boolean updateCart(CartItem cartItem) {
         String sql = "UPDATE cart SET quantity = ? WHERE userEmail = ? AND productId = ?";
         try {
+            System.out.println("EHRE: " +cartItem.getProductId());
             return jdbcTemplate.update(sql, cartItem.getQuantity(), cartItem.getUserEmail(),
                     cartItem.getProductId()) > 0;
         } catch (Exception e) {
@@ -46,9 +47,14 @@ public class CartRepository {
         jdbcTemplate.update(sql, userEmail);
     }
 
-    public void updateQuantity(CartItem cartItem) {
+    public Boolean updateQuantity(CartItem cartItem) {
         String sql = "UPDATE cart SET quantity = ? WHERE userEmail = ? AND productId = ?";
-        jdbcTemplate.update(sql, cartItem.getQuantity(), cartItem.getUserEmail(), cartItem.getProductId());
+        try {
+            return jdbcTemplate.update(sql, cartItem.getQuantity(), cartItem.getUserEmail(),
+                    cartItem.getProductId()) > 0;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public List<CartItem> getCartItems(String userEmail) {

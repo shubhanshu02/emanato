@@ -236,7 +236,6 @@
 								<div class="tab-content">
 									<!-- shopping-cart start -->
 									<div class="tab-pane active" id="shopping-cart">
-										<form action="#">
 											<div class="shop-cart-table">
 												<div class="table-content table-responsive">
 													<table>
@@ -266,26 +265,66 @@
 																</td>
 																<td class="product-price">₹<span th:text="${prod.mrp}" /></td>
 																<td class="product-quantity">
-																	<form action="/add/cartItem" method="post">
-																		<div class="cart-plus-minus">
-																			<div class="text-left">
-																				<input type="hidden" name="id" th:value="${prod.id}">
-																				<input
-																					type="text" th:value="${cartItem.quantity}" name="quantity"
-																					min="1" th:max="${prod.quantityAvailable}"
-																					class="cart-plus-minus-box">
-																			</div>
+																	<div class="cart-plus-minus">
+																		<div class="text-left">
+																			<input type="hidden" disabled name="id" th:value="${prod.id}">
+																			<input
+																				th:id="${'quantity-' + prod.id}"
+																				type="text" th:value="${cartItem.quantity}" name="quantity"
+																				min="1" th:max="${prod.quantityAvailable}"
+																				class="cart-plus-minus-box">
 																		</div>
-																		<button type="submit" data-text="edit" class="button-one quantity-edit-button mt-15">Edit</button>
-																	</form>
+																	</div>
+																	<button th:onClick="updateItemQuantity([[${prod.id}]])" data-text="edit" class="button-one quantity-edit-button mt-15">Edit</button>
 																</td>
 																<td class="product-subtotal" th:with="total = ${prod.mrp * cartItem.quantity}"><span th:text="${total}" /></td>
 																<td class="product-remove">
-																	<a href="#"><i class="zmdi zmdi-close"></i></a>
+																	<a th:onClick="deleteCartItem([[${prod.id}]])"><i class="zmdi zmdi-close"></i></a>
 																</td>
 															</tr>
 														</tbody>
 													</table>
+													<script>
+														function updateItemQuantity(id) {
+															const quantity = parseInt(document.getElementById('quantity-' + id).value);
+															console.log(id,quantity)
+
+															$.ajax({
+																url: "/update/cartItem",
+																type: "POST",
+																data: {
+																	id, quantity
+																},
+																success: function(data) {
+																	console.log(data)
+																	if (data == "true")
+																		alert("Updated");
+																	else
+																		alert("Couldn't update. Reloading");
+																	window.location.reload();
+																}
+															});
+														}
+
+
+														function deleteCartItem(id) {
+															$.ajax({
+																url: "/delete/cartItem",
+																type: "delete",
+																data: {
+																	id
+																},
+																success: function(data) {
+																	console.log(data)
+																	if (data == "true")
+																		alert("Deleted");
+																	else
+																		alert("Couldn't delete. Reloading");
+																	window.location.reload();
+																}
+															});
+														}
+													</script>
 												</div>
 											</div>
 											<div class="row">
@@ -345,10 +384,9 @@
 															</div>
 														</div>
 														<button type="submit" data-text="get a quote" class="button-one submit-button mt-15">get a quote</button>
-													</div>											
+													</div>
 												</div>
 											</div>
-										</form>		
 									</div>
 									<!-- shopping-cart end -->
 									<!-- wishlist start -->
