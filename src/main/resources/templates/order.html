@@ -671,7 +671,7 @@
 																</thead>
 																<tbody>
 																	<tr th:each="orderItem: ${orderItems}" th:with="prod=${products.get(orderItem)}">
-																		<td><span th:text="${prod.getProductName}" /> x <span th:text="${orderItem.quantity}" /></td>
+																		<td><a th:href="${'product/' + prod.getId}"><span th:text="${prod.getProductName}" /></a> x <span th:text="${orderItem.quantity}" /></td>
 																		<td class="text-right">₹ <span th:text="${prod.getMrp * orderItem.quantity}" /></td>
 																	</tr>
 																	<tr>

@@ -254,10 +254,10 @@
 																	<!-- Single-product start -->
 																	<div class="single-product">
 																		<div class="product-img">
-																			<a href="single-product.html"><img th:src="${prod.getPhotosImagePath}" style="height: 11rem; width: 11rem;" alt="" /></a>
+																			<a th:href="${'product/' + prod.getId}"><img th:src="${prod.getPhotosImagePath}" style="height: 11rem; width: 11rem;" alt="" /></a>
 																		</div>
 																		<div class="product-info">
-																			<h4 class="post-title"><a class="text-light-black" href="#" th:text="${prod.productName}">dummy product name</a></h4>
+																			<h4 class="post-title"><a class="text-light-black" th:href="${'product/' + prod.getId}" th:text="${prod.productName}">dummy product name</a></h4>
 																			<p class="mb-0">Size : <span th:text="${prod.size}" /></p>
 																		</div>
 																	</div>

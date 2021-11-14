@@ -30,6 +30,15 @@ public class CategoryRepository {
         });
     }
 
+    public Category findbyId(int id) {
+        String query = "SELECT * FROM category where id = ?";
+        return jdbcTemplate.queryForObject(query, (resultSet, i) -> {
+            Category category = new Category(resultSet.getInt("Id"), resultSet.getString("categoryName"),
+                    resultSet.getString("supplierName"));
+            return category;
+        }, id);
+    }
+
     public Boolean delete(Category category) {
         String query = "DELETE FROM category WHERE categoryName = ? and supplierName = ?";
         return jdbcTemplate.update(query, category.getCategoryName(), category.getSupplierName()) > 0;

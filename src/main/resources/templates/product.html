@@ -3,11 +3,11 @@
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
-		<title>Shop || Hurst</title>
+		<title>Product Details || Hurst</title>
 		<meta name="description" content="">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+		<link rel="shortcut icon" type="image/x-icon" th:href="@{/img/favicon.ico}">
 		<!-- Place favicon.ico in the root directory -->
 		
 		<!-- Google Font -->
@@ -18,32 +18,32 @@
 
 		<!-- all css here -->
 		<!-- bootstrap v3.3.6 css -->
-		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 		<!-- animate css -->
-		<link rel="stylesheet" href="css/animate.css">
+		<link rel="stylesheet" th:href="@{/css/animate.css}">
 		<!-- jquery-ui.min css -->
-		<link rel="stylesheet" href="css/jquery-ui.min.css">
+		<link rel="stylesheet" th:href="@{/css/jquery-ui.min.css}">
 		<!-- meanmenu css -->
-		<link rel="stylesheet" href="css/meanmenu.min.css">
+		<link rel="stylesheet" th:href="@{/css/meanmenu.min.css}">
 		<!-- nivo-slider css -->
-		<link rel="stylesheet" href="lib/css/nivo-slider.css">
-		<link rel="stylesheet" href="lib/css/preview.css">
+		<link rel="stylesheet" th:href="@{/lib/css/nivo-slider.css}">
+		<link rel="stylesheet" th:href="@{/lib/css/preview.css}">
 		<!-- slick css -->
-		<link rel="stylesheet" href="css/slick.css">
+		<link rel="stylesheet" th:href="@{/css/slick.css}">
 		<!-- lightbox css -->
-		<link rel="stylesheet" href="css/lightbox.min.css">
+		<link rel="stylesheet" th:href="@{/css/lightbox.min.css}">
 		<!-- material-design-iconic-font css -->
-		<link rel="stylesheet" href="css/material-design-iconic-font.css">
+		<link rel="stylesheet" th:href="@{/css/material-design-iconic-font.css}">
 		<!-- All common css of theme -->
-		<link rel="stylesheet" href="css/default.css">
+		<link rel="stylesheet" th:href="@{/css/default.css}">
 		<!-- style css -->
-		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" th:href="@{/style.css}">
         <!-- shortcode css -->
-        <link rel="stylesheet" href="css/shortcode.css">
+        <link rel="stylesheet" th:href="@{/css/shortcode.css}">
 		<!-- responsive css -->
-		<link rel="stylesheet" href="css/responsive.css">
+		<link rel="stylesheet" th:href="@{/css/responsive.css}">
 		<!-- modernizr css -->
-		<script src="js/vendor/modernizr-2.8.3.min.js"></script>
+		<script th:src="@{/js/vendor/modernizr-2.8.3.min.js}"></script>
 	</head>
 	<body>	
 		<!-- WRAPPER START -->
@@ -77,7 +77,7 @@
 												<div class="all-cart-product clearfix">
 													<div class="single-cart clearfix">
 														<div class="cart-photo">
-															<a href="#"><img src="img/cart/1.jpg" alt="" /></a>
+															<a href="#"><img th:src="@{/img/cart/1.jpg}" alt="" /></a>
 														</div>
 														<div class="cart-info">
 															<h5><a href="#">dummy product name</a></h5>
@@ -88,7 +88,7 @@
 													</div>
 													<div class="single-cart clearfix">
 														<div class="cart-photo">
-															<a href="#"><img src="img/cart/2.jpg" alt="" /></a>
+															<a href="#"><img th:src="@{/img/cart/2.jpg}" alt="" /></a>
 														</div>
 														<div class="cart-info">
 															<h5><a href="#">dummy product name</a></h5>
@@ -204,12 +204,12 @@
 						<div class="col-md-12">
 							<div class="heading-banner">
 								<div class="heading-banner-title">
-									<h2>Catalog</h2>
+									<h2 th:text="${product.getProductName}"></h2>
 								</div>
 								<div class="breadcumbs pb-15">
 									<ul>
-										<li><a href="#">Home</a></li>
-										<li>Catalog</li>
+										<li><a th:href="@{/}">Home</a></li>
+										<li th:text="${product.getProductName}"></li>
 									</ul>
 								</div>
 							</div>
@@ -219,199 +219,101 @@
 			</div>
 			<!-- HEADING-BANNER END -->
 			<!-- PRODUCT-AREA START -->
-			<div class="product-area pt-80 pb-80 product-style-2">
-				<div class="container">
-					<!-- Shop-Content End -->
-					<div class="shop-content">
-						<div class="row">
-							<!--
-							<div class="col-md-12">
-								<div class="product-option mb-30 clearfix">
-									<div class="dropdown floatleft">
-										<button class="option-btn" >
-										Categories
-										</button>
-										<div class="dropdown-menu dropdown-width" >
-											<aside class="widget widget-categories">
-												<div class="widget-title">
-													<h4>Categories</h4>
-												</div>
-												<div id="cat-treeview"  class="widget-info product-cat boxscrol2">
-													<ul>
-														<li><span>Chair</span>
-															<ul>
-																<li><a href="#">T-Shirts</a></li>
-																<li><a href="#">Striped Shirts</a></li>
-																<li><a href="#">Half Shirts</a></li>
-																<li><a href="#">Formal Shirts</a></li>
-																<li><a href="#">Bilazers</a></li>
-															</ul>
-														</li>          
-														<li class="open"><span>Furniture</span>
-															<ul>
-																<li><a href="#">Men Bag</a></li>
-																<li><a href="#">Shoes</a></li>
-																<li><a href="#">Watch</a></li>
-																<li><a href="#">T-shirt</a></li>
-																<li><a href="#">Shirt</a></li>
-															</ul>
-														</li>          
-														<li><span>Accessories</span>
-															<ul>
-																<li><a href="#">T-Shirts</a></li>
-																<li><a href="#">Striped Shirts</a></li>
-																<li><a href="#">Half Shirts</a></li>
-																<li><a href="#">Formal Shirts</a></li>
-																<li><a href="#">Bilazers</a></li>
-															</ul>
-														</li>
-														<li><span>Top Brands</span>
-															<ul>
-																<li><a href="#">T-Shirts</a></li>
-																<li><a href="#">Striped Shirts</a></li>
-																<li><a href="#">Half Shirts</a></li>
-																<li><a href="#">Formal Shirts</a></li>
-																<li><a href="#">Bilazers</a></li>
-															</ul>
-														</li>
-														<li><span>Jewelry</span>
-															<ul>
-																<li><a href="#">T-Shirts</a></li>
-																<li><a href="#">Striped Shirts</a></li>
-																<li><a href="#">Half Shirts</a></li>
-																<li><a href="#">Formal Shirts</a></li>
-																<li><a href="#">Bilazers</a></li>
-															</ul>
-														</li>
-													</ul>
-												</div>
-											</aside>
-										</div>
-									</div>	
-									<div class="dropdown floatleft">
-										<button class="option-btn" >
-										Price
-										</button>
-										<div class="dropdown-menu dropdown-width" >
-											<aside class="widget shop-filter">
-												<div class="widget-title">
-													<h4>Price</h4>
-												</div>
-												<div class="widget-info">
-													<div class="price_filter">
-														<div class="price_slider_amount">
-															<input type="submit"  value="You range :"/> 
-															<input type="text" id="amount" name="price"  placeholder="Add Your Price" /> 
-														</div>
-														<div id="slider-range"></div>
-													</div>
-												</div>
-											</aside>
-										</div>
-									</div>	
-									<div class="dropdown floatleft">
-										<button class="option-btn">
-										Color
-										</button>
-										<div class="dropdown-menu dropdown-width" >
-											<aside class="widget widget-color">
-												<div class="widget-title">
-													<h4>Color</h4>
-												</div>
-												<div class="widget-info color-filter clearfix">
-													<ul>
-														<li><a href="#"><span class="color color-1"></span>LightSalmon<span class="count">12</span></a></li>
-														<li><a href="#"><span class="color color-2"></span>Dark Salmon<span class="count">20</span></a></li>
-														<li><a href="#"><span class="color color-3"></span>Tomato<span class="count">59</span></a></li>
-														<li class="active"><a href="#"><span class="color color-4"></span>Deep Sky Blue<span class="count">45</span></a></li>
-														<li><a href="#"><span class="color color-5"></span>Electric Purple<span class="count">78</span></a></li>
-														<li><a href="#"><span class="color color-6"></span>Atlantis<span class="count">10</span></a></li>
-														<li><a href="#"><span class="color color-7"></span>Deep Lilac<span class="count">15</span></a></li>
-													</ul>
-												</div>
-											</aside>
-										</div>
+			<div class="product-area single-pro-area pt-80 pb-80 product-style-2">
+				<div class="container">	
+					<div class="row shop-list single-pro-info no-sidebar">
+						<!-- Single-product start -->
+						<div class="col-lg-12">
+							<div class="single-product clearfix">
+								<!-- Single-pro-slider Big-photo start -->
+								<div class="single-pro-slider single-big-photo view-lightbox slider-for">
+									<div>
+										<img th:src="${product.getPhotosImagePath}" alt="" />
+										<a class="view-full-screen" th:href="${product.getPhotosImagePath}"  data-lightbox="roadtrip" th:data-title="${product.getProductName}">
+											<i class="zmdi zmdi-zoom-in"></i>
+										</a>
 									</div>
-									<div class="dropdown floatleft">
-										<button class="option-btn">
-										Size
-										</button>
-										<div class="dropdown-menu dropdown-width" >
-											<aside class="widget widget-size">
-												<div class="widget-title">
-													<h4>Size</h4>
-												</div>
-												<div class="widget-info size-filter clearfix">
-													<ul>
-														<li><a href="#">M</a></li>
-														<li class="active"><a href="#">S</a></li>
-														<li><a href="#">L</a></li>
-														<li><a href="#">SL</a></li>
-														<li><a href="#">XL</a></li>
-													</ul>
-												</div>
-											</aside>
-										</div>
+								</div>
+								<!-- Single-pro-slider Big-photo end -->
+								<div class="product-info">
+									<div class="fix">
+										<h4 class="post-title floatleft" th:text="${product.productName}" />
 									</div>
-									<div class="showing text-right">
-										<p class="mb-0 hidden-xs">Showing 01-09 of 17 Results</p>
+									<div class="fix mb-20">
+										<span class="pro-price">₹ <span th:text="${product.getMrp}" /></span>
+									</div>
+									<div class="product-description">
+										<p th:text="${product.getDetails}">There are many variations of passages of Lorem Ipsum available, but the majority have be suffered alteration in some form, by injected humou or randomised words which donot look even slightly believable. If you are going to use a passage of Lorem Ipsum. </p>
+									</div>
+									<!-- Size end -->
+									<div class="clearfix">
+										<form action="/add/cartItem" method="post">
+											<div class="text-left">
+												<p class="text-muted">Quantity</p>
+												<input type="hidden" name="id" th:value="${product.id}">
+												<input type="number" name="quantity" value="1" min="1" th:max="${product.quantityAvailable}" >
+											</div>
+											<button type="submit" data-text="Add to Cart" class="button-one submit-button mt-15">Add to Cart</button>
+										</form>
 									</div>
 								</div>
 							</div>
-							-->
-							<div class="col-md-12">
-								<div class="row">
-									<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12" th:each="product: ${products}" th:if="${product.quantityAvailable > 0}">
-										<div class="single-product">
-											<div class="product-img">
-												<span class="pro-price-2">
-													₹
-													<span th:text="${product.mrp}"></span>
-												</span>
-												<a th:href="${'product/' + product.getId}"><img th:src="${product.getPhotosImagePath}"  alt="" /></a>
-											</div>
-											<div class="product-info clearfix text-center">
-												<div class="fix">
-													<h4 class="post-title"><a href="#" th:text="${product.productName}"></a></h4>
-													<p class="text-muted" th:text="${product.size}"></p>
-												</div>
-												<div class="fix">
-													<span class="pro-rating">
-														<form action="/add/cartItem" method="post">
-															<div class="text-left">
-																<p class="text-muted">Quantity</p>
-																<input type="hidden" name="id" th:value="${product.id}">
-																<input type="number" name="quantity" value="1" min="1" th:max="${product.quantityAvailable}" >
-															</div>
-															<button type="submit" data-text="Add to Cart" class="button-one submit-button mt-15">Add to Cart</button>
-														</form>
-													</span>
-												</div>
-												<!--
-												<div class="fix">
-													<span class="pro-rating">
-														<a href="#"><i class="zmdi zmdi-star"></i></a>
-														<a href="#"><i class="zmdi zmdi-star"></i></a>
-														<a href="#"><i class="zmdi zmdi-star"></i></a>
-														<a href="#"><i class="zmdi zmdi-star-half"></i></a>
-														<a href="#"><i class="zmdi zmdi-star-half"></i></a>
-													</span>
-												</div>
-												<div class="product-action clearfix">
-													<a href="#" data-toggle="tooltip" data-placement="top" title="Wishlist"><i class="zmdi zmdi-favorite-outline"></i></a>
-													<a href="#" data-toggle="modal"  data-target="#productModal" title="Quick View"><i class="zmdi zmdi-zoom-in"></i></a>
-													<a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="zmdi zmdi-refresh"></i></a>
-													<a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
-												</div>
-												-->
-											</div>
+						</div>
+						<!-- Single-product end -->
+					</div>
+					<!-- single-product-tab start -->
+					<div class="single-pro-tab">
+						<div class="row">
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+								<div class="single-pro-tab-menu">
+									<!-- Nav tabs -->
+									<ul class="">
+										<li class="active"><a href="#description" data-toggle="tab">Description</a></li>
+										<li><a href="#information" data-toggle="tab">Information</a></li>
+									</ul>
+								</div>
+							</div>
+							<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+								<!-- Tab panes -->
+								<div class="tab-content">
+									<div class="tab-pane active" id="description">
+										<div class="pro-tab-info pro-description">
+											<h3 class="tab-title title-border mb-30" th:text="${product.productName}">dummy Product name</h3>
+											<h5><u>Description</u></h5>
+											<p th:text="${product.details}"></p>
+											<p>
+												At Tarun Kirana Store, taking care of our customer needs is at top priority.
+												We provide high quantity products that match the quality of international brands.
+												We also host monthly on-store contests for customers ranging from treasure hunt to ProductBash,
+												our tagline event.
+											</p>
+										</div>
+									</div>
+									<div class="tab-pane" id="information">
+										<div class="pro-tab-info pro-information">
+											<h3 class="tab-title title-border mb-30" th:text="${product.productName}">dummy Product name</h3>
+											<p>
+												<strong>MRP: </strong>₹ <span th:text="${product.getMrp}" />
+											</p>
+											<p>
+												<strong>Size: </strong><span th:text="${product.size}" />
+											</p>
+											<p>
+												<strong>Pieces Available: </strong><span th:text="${product.quantityAvailable}" />
+											</p>
+											<p>
+												<strong>Category Name: </strong><span th:text="${category.categoryName}" />
+											</p>
+											<p>
+												<strong>Supplier: </strong><span th:text="${category.supplierName}" />
+											</p>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					<!-- Shop-Content End -->
+					<!-- single-product-tab end -->
 				</div>
 			</div>
 			<!-- PRODUCT-AREA END -->
@@ -553,37 +455,37 @@
 			   <!-- END Modal -->
 			</div>
 			<!-- END QUICKVIEW PRODUCT -->	
-			
+
 		</div>
 		<!-- WRAPPER END -->
 
 		<!-- all js here -->
 		<!-- jquery latest version -->
-		<script src="js/vendor/jquery-1.12.0.min.js"></script>
+		<script th:src="@{/js/vendor/jquery-1.12.0.min.js}"></script>
 		<!-- bootstrap js -->
-		<script src="js/bootstrap.min.js"></script>
+		<script th:src="@{/js/bootstrap.min.js}"></script>
 		<!-- jquery.meanmenu js -->
-		<script src="js/jquery.meanmenu.js"></script>
+		<script th:src="@{/js/jquery.meanmenu.js}"></script>
 		<!-- slick.min js -->
-		<script src="js/slick.min.js"></script>
+		<script th:src="@{/js/slick.min.js}"></script>
 		<!-- jquery.treeview js -->
-		<script src="js/jquery.treeview.js"></script>
+		<script th:src="@{/js/jquery.treeview.js}"></script>
 		<!-- lightbox.min js -->
-		<script src="js/lightbox.min.js"></script>
+		<script th:src="@{/js/lightbox.min.js}"></script>
 		<!-- jquery-ui js -->
-		<script src="js/jquery-ui.min.js"></script>
+		<script th:src="@{/js/jquery-ui.min.js}"></script>
 		<!-- jquery.nivo.slider js -->
-		<script src="lib/js/jquery.nivo.slider.js"></script>
-		<script src="lib/home.js"></script>
+		<script th:src="@{lib/js/jquery.nivo.slider.js}"></script>
+		<script th:src="@{lib/home.js}"></script>
 		<!-- jquery.nicescroll.min js -->
-		<script src="js/jquery.nicescroll.min.js"></script>
+		<script th:src="@{/js/jquery.nicescroll.min.js}"></script>
 		<!-- countdon.min js -->
-		<script src="js/countdon.min.js"></script>
+		<script th:src="@{/js/countdon.min.js}"></script>
 		<!-- wow js -->
-		<script src="js/wow.min.js"></script>
+		<script th:src="@{/js/wow.min.js}"></script>
 		<!-- plugins js -->
-		<script src="js/plugins.js"></script>
+		<script th:src="@{/js/plugins.js}"></script>
 		<!-- main js -->
-		<script src="js/main.js"></script>
+		<script th:src="@{/js/main.js}"></script>
 	</body>
 </html>
