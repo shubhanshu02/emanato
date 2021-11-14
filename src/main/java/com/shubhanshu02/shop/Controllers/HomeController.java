@@ -1,18 +1,27 @@
 package com.shubhanshu02.shop.Controllers;
 
-import org.springframework.jdbc.core.JdbcTemplate;
+import java.util.List;
+
+import com.shubhanshu02.shop.Models.Product;
+import com.shubhanshu02.shop.Repository.ProductRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class HomeController {
 
+	@Autowired
+	ProductRepository productRepository;
+
 	@GetMapping("/")
 	public String home(Model model) {
-		model.addAttribute("name", "asdas");
+		List<Product> products = productRepository.listAll();
+		products = products.subList(0, Math.min(4, products.size()));
 
+		model.addAttribute("products", products);
 		return "index";
 	}
 }
