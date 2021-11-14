@@ -287,8 +287,6 @@
 													<script>
 														function updateItemQuantity(id) {
 															const quantity = parseInt(document.getElementById('quantity-' + id).value);
-															console.log(id,quantity)
-
 															$.ajax({
 																url: "/update/cartItem",
 																type: "POST",
@@ -329,19 +327,6 @@
 											</div>
 											<div class="row">
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<div class="customer-login mt-30">
-														<!--
-														<h4 class="title-1 title-border text-uppercase">coupon discount</h4>
-														<p class="text-gray">Enter your coupon code if you have one!</p>
-														<input type="text" placeholder="Enter your code here.">
-														<button type="submit" data-text="apply coupon" class="button-one submit-button mt-15">apply coupon</button>
-														-->
-														<h4 class="title-1 title-border text-uppercase">coupon discount</h4>
-														<p class="text-gray">Enter your coupon code if you have one!</p>
-														<input type="text" placeholder="Enter your code here.">
-													</div>
-												</div>
-												<div class="col-md-6 col-sm-6 col-xs-12">
 													<div class="customer-login payment-details mt-30">
 														<h4 class="title-1 title-border text-uppercase">payment details</h4>
 														<table>
@@ -366,6 +351,49 @@
 														</table>
 													</div>
 												</div>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<div class="customer-login mt-30">
+														<!--
+														<h4 class="title-1 title-border text-uppercase">coupon discount</h4>
+														<p class="text-gray">Enter your coupon code if you have one!</p>
+														<input type="text" placeholder="Enter your code here.">
+														<button type="submit" data-text="apply coupon" class="button-one submit-button mt-15">apply coupon</button>
+														-->
+														<h4 class="title-1 title-border text-uppercase">Place Order</h4>
+														<p class="text-gray">Enter your address and phone number below!</p>
+														<input id="mob" type="text" placeholder="Enter Mobile Number">
+														<textarea id="address" class="custom-textarea" placeholder="Enter Address..." required></textarea>
+														<div class="text-right">
+															<button onClick="finalSubmit()" data-text="get a quote" class="button-one submit-button mt-15">Place Order</button>
+														</div>
+													</div>
+													<script>
+														function finalSubmit() {
+															const mobile = document.getElementById('mob').value.trim();
+															const address = document.getElementById('address').value.trim();
+															if (!mobile || mobile.length !== 10) alert("Enter a valid mobile number!");
+															else if (!address) alert("Enter a valid address!");
+															$.ajax({
+																url: "/add/order",
+																type: "POST",
+																data: {
+																	mobile, address
+																},
+																success: function(data) {
+																	console.log(data)
+																	if (data == "no") {
+																		alert("Couldn't place the order. Reloading");
+																		windows.location.reload();
+																	}
+																	else {
+																		alert("Success");
+																		window.location.replace(data);
+																	}
+																}
+															});
+														}
+													</script>
+												</div>
 											</div>
 											<div class="row">
 												<div class="col-md-12">
@@ -383,7 +411,6 @@
 																<input type="text" placeholder="Post code">
 															</div>
 														</div>
-														<button type="submit" data-text="get a quote" class="button-one submit-button mt-15">get a quote</button>
 													</div>
 												</div>
 											</div>
@@ -418,7 +445,7 @@
 																			<p class="mb-0">Size : SL</p>
 																		</div>
 																	</div>
-																	<!-- Single-product end -->				
+																	<!-- Single-product end -->
 																</td>
 																<td class="product-price">$56.00</td>
 																<td class="product-stock">in stock</td>

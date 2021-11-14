@@ -2,14 +2,25 @@ package com.shubhanshu02.shop.Models;
 
 public class OrderItem {
 
+    private String userEmail;
     private int productId;
-    private int productQuantity;
-    private int orderId;
+    private int quantity;
 
-    public OrderItem(int productId, int productQuantity, int orderId) {
+    public OrderItem() {
+    }
+
+    public OrderItem(String userEmail, int productId, int quantity) {
+        this.userEmail = userEmail;
         this.productId = productId;
-        this.productQuantity = productQuantity;
-        this.orderId = orderId;
+        this.quantity = quantity;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 
     public int getProductId() {
@@ -20,55 +31,12 @@ public class OrderItem {
         this.productId = productId;
     }
 
-    public int getProductQuantity() {
-        return productQuantity;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setProductQuantity(int productQuantity) {
-        this.productQuantity = productQuantity;
-    }
-
-    public int getProductPrice() {
-        // TODO: SQL IMPLEMENTATION
-        return 0;
-    }
-
-    public int getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(int orderId) {
-        this.orderId = orderId;
-    }
-
-    @Override
-    public String toString() {
-        return "OrderItem{" + "productId=" + productId + ", productQuantity=" + productQuantity + ", orderId=" + orderId
-                + '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-
-        OrderItem orderItem = (OrderItem) o;
-
-        if (productId != orderItem.productId)
-            return false;
-        if (productQuantity != orderItem.productQuantity)
-            return false;
-        return orderId == orderItem.orderId;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = productId;
-        result = 31 * result + productQuantity;
-        result = 31 * result + orderId;
-        return result;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
 }
