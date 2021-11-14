@@ -60,18 +60,22 @@ public class OrderRepository {
 
     public Order getOrder(int id) {
         String sql = "SELECT * FROM orders WHERE id = ?";
-        return jdbcTemplate.queryForObject(sql, (rs, rowNum) -> {
-            Order order = new Order(rs.getInt("id"), rs.getDate("orderDate"), rs.getInt("total"),
-                    rs.getString("orderStatus"), rs.getString("userEmail"), rs.getString("deliveryAddress"),
-                    rs.getString("contact"));
-            return order;
-        }, id);
+        try {
+            return jdbcTemplate.queryForObject(sql, (rs, rowNum) -> {
+                Order order = new Order(rs.getInt("id"), rs.getDate("orderDate"), rs.getInt("total"),
+                        rs.getString("orderStatus"), rs.getString("userEmail"), rs.getString("deliveryAddress"),
+                        rs.getString("contact"));
+                return order;
+            }, id);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     public List<OrderItem> getOrderItems(int id) {
         String sql = "SELECT * FROM OrderItem WHERE orderId = ?";
         return jdbcTemplate.query(sql, (rs, rowNum) -> {
-            OrderItem orderItem = new OrderItem(rs.getString("userEmail"), rs.getInt("productId"),
+            OrderItem orderItem = new OrderItem(rs.getInt("orderId"), rs.getInt("productId"),
                     rs.getInt("quantity"));
             return orderItem;
         }, id);

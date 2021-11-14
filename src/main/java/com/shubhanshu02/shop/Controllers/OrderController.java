@@ -2,10 +2,13 @@ package com.shubhanshu02.shop.Controllers;
 
 import java.sql.Date;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.shubhanshu02.shop.Models.CartItem;
 import com.shubhanshu02.shop.Models.Order;
+import com.shubhanshu02.shop.Models.OrderItem;
 import com.shubhanshu02.shop.Models.Product;
 import com.shubhanshu02.shop.Repository.CartRepository;
 import com.shubhanshu02.shop.Repository.OrderRepository;
@@ -38,7 +41,18 @@ public class OrderController {
 
     @GetMapping("/order/{orderId}")
     public String getOrder(@PathVariable(value = "orderId") int orderId, Model model) {
-
+        Order order = orderRepository.getOrder(orderId);
+        if (order == null) {
+            return "redirect:/404";
+        }
+        List<OrderItem> orderItems = orderRepository.getOrderItems(order.getId());
+        Map<Object, Object> products = new HashMap<Object, Object>();
+        for (OrderItem orderItem : orderItems) {
+            products.put(orderItem, productRepository.getProductById(orderItem.getProductId()));
+        }
+        model.addAttribute("order", order);
+        model.addAttribute("orderItems", orderItems);
+        model.addAttribute("products", products);
         return "order";
     }
 

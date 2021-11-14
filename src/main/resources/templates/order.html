@@ -3,11 +3,11 @@
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
-		<title>Shopping Cart || Hurst</title>
+		<title>Order || Hurst</title>
 		<meta name="description" content="">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+		<link rel="shortcut icon" type="image/x-icon" th:href="@{/img/favicon.ico}">
 		<!-- Place favicon.ico in the root directory -->
 		
 		<!-- Google Font -->
@@ -18,32 +18,32 @@
 
 		<!-- all css here -->
 		<!-- bootstrap v3.3.6 css -->
-		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 		<!-- animate css -->
-		<link rel="stylesheet" href="css/animate.css">
+		<link rel="stylesheet" th:href="@{/css/animate.css}">
 		<!-- jquery-ui.min css -->
-		<link rel="stylesheet" href="css/jquery-ui.min.css">
+		<link rel="stylesheet" th:href="@{/css/jquery-ui.min.css}">
 		<!-- meanmenu css -->
-		<link rel="stylesheet" href="css/meanmenu.min.css">
+		<link rel="stylesheet" th:href="@{/css/meanmenu.min.css}">
 		<!-- nivo-slider css -->
-		<link rel="stylesheet" href="lib/css/nivo-slider.css">
-		<link rel="stylesheet" href="lib/css/preview.css">
+		<link rel="stylesheet" th:href="@{/lib/css/nivo-slider.css}">
+		<link rel="stylesheet" th:href="@{/lib/css/preview.css}">
 		<!-- slick css -->
-		<link rel="stylesheet" href="css/slick.css">
+		<link rel="stylesheet" th:href="@{/css/slick.css}">
 		<!-- lightbox css -->
-		<link rel="stylesheet" href="css/lightbox.min.css">
+		<link rel="stylesheet" th:href="@{/css/lightbox.min.css}">
 		<!-- material-design-iconic-font css -->
-		<link rel="stylesheet" href="css/material-design-iconic-font.css">
+		<link rel="stylesheet" th:href="@{/css/material-design-iconic-font.css}">
 		<!-- All common css of theme -->
-		<link rel="stylesheet" href="css/default.css">
+		<link rel="stylesheet" th:href="@{/css/default.css}">
 		<!-- style css -->
-		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" th:href="@{/style.css}">
         <!-- shortcode css -->
-        <link rel="stylesheet" href="css/shortcode.css">
+        <link rel="stylesheet" th:href="@{/css/shortcode.css}">
 		<!-- responsive css -->
-		<link rel="stylesheet" href="css/responsive.css">
+		<link rel="stylesheet" th:href="@{/css/responsive.css}">
 		<!-- modernizr css -->
-		<script src="js/vendor/modernizr-2.8.3.min.js"></script>
+		<script th:src="@{/js/vendor/modernizr-2.8.3.min.js}"></script>
 	</head>
 	<body>	
 		<!-- WRAPPER START -->
@@ -77,7 +77,7 @@
 												<div class="all-cart-product clearfix">
 													<div class="single-cart clearfix">
 														<div class="cart-photo">
-															<a href="#"><img src="img/cart/1.jpg" alt="" /></a>
+															<a href="#"><img th:src="@{/img/cart/1.jpg}" alt="" /></a>
 														</div>
 														<div class="cart-info">
 															<h5><a href="#">dummy product name</a></h5>
@@ -88,7 +88,7 @@
 													</div>
 													<div class="single-cart clearfix">
 														<div class="cart-photo">
-															<a href="#"><img src="img/cart/2.jpg" alt="" /></a>
+															<a href="#"><img th:src="@{/img/cart/2.jpg}" alt="" /></a>
 														</div>
 														<div class="cart-info">
 															<h5><a href="#">dummy product name</a></h5>
@@ -204,12 +204,12 @@
 						<div class="col-md-12">
 							<div class="heading-banner">
 								<div class="heading-banner-title">
-									<h2>Shopping Cart</h2>
+									<h2>Order Summary</h2>
 								</div>
 								<div class="breadcumbs pb-15">
 									<ul>
 										<li><a th:href="@{/}">Home</a></li>
-										<li>Shopping Cart</li>
+										<li>Order Summary</li>
 									</ul>
 								</div>
 							</div>
@@ -218,7 +218,7 @@
 				</div>
 			</div>
 			<!-- HEADING-BANNER END -->
-			<!-- SHOPPING-CART-AREA START -->
+			<!-- ORDER-AREA START -->
 			<div class="shopping-cart-area  pt-80 pb-80">
 				<div class="container">	
 					<div class="row">
@@ -226,16 +226,17 @@
 							<div class="shopping-cart">
 								<!-- Nav tabs -->
 								<ul class="cart-page-menu row clearfix mb-30">
-									<li class="active"><a href="#shopping-cart" data-toggle="tab">shopping cart</a></li>
+									<li><a href="#shopping-cart" data-toggle="tab">shopping cart</a></li>
 									<li><a href="#wishlist" data-toggle="tab">wishlist</a></li>
 									<li><a href="#check-out" data-toggle="tab">check out</a></li>
-									<li><a href="#order-complete" data-toggle="tab">order complete</a></li>
+									<li class="active"><a href="#order-complete" data-toggle="tab">order complete</a></li>
 								</ul>
 
 								<!-- Tab panes -->
 								<div class="tab-content">
 									<!-- shopping-cart start -->
-									<div class="tab-pane active" id="shopping-cart">
+									<div class="tab-pane" id="shopping-cart">
+										<form action="#">
 											<div class="shop-cart-table">
 												<div class="table-content table-responsive">
 													<table>
@@ -249,83 +250,97 @@
 															</tr>
 														</thead>
 														<tbody>
-															<tr th:each="cartItem: ${cartItems}" th:with="prod=${cartProduct.get(cartItem)}">
+															<tr>
 																<td class="product-thumbnail  text-left">
 																	<!-- Single-product start -->
 																	<div class="single-product">
 																		<div class="product-img">
-																			<a href="single-product.html"><img th:src="${prod.getPhotosImagePath}" style="height: 11rem; width: 11rem;" alt="" /></a>
+																			<a href="single-product.html"><img th:src="@{/img/product/2.jpg}" alt="" /></a>
 																		</div>
 																		<div class="product-info">
-																			<h4 class="post-title"><a class="text-light-black" href="#" th:text="${prod.productName}">dummy product name</a></h4>
-																			<p class="mb-0">Size : <span th:text="${prod.size}" /></p>
+																			<h4 class="post-title"><a class="text-light-black" href="#">dummy product name</a></h4>
+																			<p class="mb-0">Color :  Black</p>
+																			<p class="mb-0">Size :     SL</p>
 																		</div>
 																	</div>
-																	<!-- Single-product end -->
+																	<!-- Single-product end -->												
 																</td>
-																<td class="product-price">₹<span th:text="${prod.mrp}" /></td>
+																<td class="product-price">$56.00</td>
 																<td class="product-quantity">
 																	<div class="cart-plus-minus">
-																		<div class="text-left">
-																			<input type="hidden" disabled name="id" th:value="${prod.id}">
-																			<input
-																				th:id="${'quantity-' + prod.id}"
-																				type="text" th:value="${cartItem.quantity}" name="quantity"
-																				min="1" th:max="${prod.quantityAvailable}"
-																				class="cart-plus-minus-box">
+																		<input type="text" value="02" name="qtybutton" class="cart-plus-minus-box">
+																	</div>
+																</td>
+																<td class="product-subtotal">$112.00</td>
+																<td class="product-remove">
+																	<a href="#"><i class="zmdi zmdi-close"></i></a>
+																</td>
+															</tr>
+															<tr>
+																<td class="product-thumbnail  text-left">
+																	<!-- Single-product start -->
+																	<div class="single-product">
+																		<div class="product-img">
+																			<a href="single-product.html"><img th:src="@{/img/product/12.jpg}" alt="" /></a>
+																		</div>
+																		<div class="product-info">
+																			<h4 class="post-title"><a class="text-light-black" href="#">dummy product name</a></h4>
+																			<p class="mb-0">Color :  Black</p>
+																			<p class="mb-0">Size :     SL</p>
 																		</div>
 																	</div>
-																	<button th:onClick="updateItemQuantity([[${prod.id}]])" data-text="edit" class="button-one quantity-edit-button mt-15">Edit</button>
+																	<!-- Single-product end -->												
 																</td>
-																<td class="product-subtotal" th:with="total = ${prod.mrp * cartItem.quantity}"><span th:text="${total}" /></td>
+																<td class="product-price">$56.00</td>
+																<td class="product-quantity">
+																	<div class="cart-plus-minus">
+																		<input type="text" value="02" name="qtybutton" class="cart-plus-minus-box">
+																	</div>
+																</td>
+																<td class="product-subtotal">$112.00</td>
 																<td class="product-remove">
-																	<a th:onClick="deleteCartItem([[${prod.id}]])"><i class="zmdi zmdi-close"></i></a>
+																	<a href="#"><i class="zmdi zmdi-close"></i></a>
+																</td>
+															</tr>
+															<tr>
+																<td class="product-thumbnail  text-left">
+																	<!-- Single-product start -->
+																	<div class="single-product">
+																		<div class="product-img">
+																			<a href="single-product.html"><img th:src="@{/img/product/6.jpg}" alt="" /></a>
+																		</div>
+																		<div class="product-info">
+																			<h4 class="post-title"><a class="text-light-black" href="#">dummy product name</a></h4>
+																			<p class="mb-0">Color :  Black</p>
+																			<p class="mb-0">Size :     SL</p>
+																		</div>
+																	</div>
+																	<!-- Single-product end -->												
+																</td>
+																<td class="product-price">$56.00</td>
+																<td class="product-quantity">
+																	<div class="cart-plus-minus">
+																		<input type="text" value="02" name="qtybutton" class="cart-plus-minus-box">
+																	</div>
+																</td>
+																<td class="product-subtotal">$112.00</td>
+																<td class="product-remove">
+																	<a href="#"><i class="zmdi zmdi-close"></i></a>
 																</td>
 															</tr>
 														</tbody>
 													</table>
-													<script>
-														function updateItemQuantity(id) {
-															const quantity = parseInt(document.getElementById('quantity-' + id).value);
-															$.ajax({
-																url: "/update/cartItem",
-																type: "POST",
-																data: {
-																	id, quantity
-																},
-																success: function(data) {
-																	console.log(data)
-																	if (data == "true")
-																		alert("Updated");
-																	else
-																		alert("Couldn't update. Reloading");
-																	window.location.reload();
-																}
-															});
-														}
-
-
-														function deleteCartItem(id) {
-															$.ajax({
-																url: "/delete/cartItem",
-																type: "delete",
-																data: {
-																	id
-																},
-																success: function(data) {
-																	console.log(data)
-																	if (data == "true")
-																		alert("Deleted");
-																	else
-																		alert("Couldn't delete. Reloading");
-																	window.location.reload();
-																}
-															});
-														}
-													</script>
 												</div>
 											</div>
 											<div class="row">
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<div class="customer-login mt-30">
+														<h4 class="title-1 title-border text-uppercase">coupon discount</h4>
+														<p class="text-gray">Enter your coupon code if you have one!</p>
+														<input type="text" placeholder="Enter your code here.">
+														<button type="submit" data-text="apply coupon" class="button-one submit-button mt-15">apply coupon</button>
+													</div>
+												</div>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<div class="customer-login payment-details mt-30">
 														<h4 class="title-1 title-border text-uppercase">payment details</h4>
@@ -333,66 +348,23 @@
 															<tbody>
 																<tr>
 																	<td class="text-left">Cart Subtotal</td>
-																	<td class="text-right">₹ <span th:text="${orderTotal - 15 - 35}" /></td>
+																	<td class="text-right">$155.00</td>
 																</tr>
 																<tr>
-																	<td class="text-left">Processing Fee</td>
-																	<td class="text-right">₹15.00</td>
+																	<td class="text-left">Cart Subtotal</td>
+																	<td class="text-right">$15.00</td>
 																</tr>
 																<tr>
-																	<td class="text-left">Delivery Fees</td>
-																	<td class="text-right">₹35</td>
+																	<td class="text-left">Vat</td>
+																	<td class="text-right">$00.00</td>
 																</tr>
 																<tr>
 																	<td class="text-left">Order Total</td>
-																	<td class="text-right">₹ <span th:text="${orderTotal}" /> </td>
+																	<td class="text-right">$170.00</td>
 																</tr>
 															</tbody>
 														</table>
 													</div>
-												</div>
-												<div class="col-md-6 col-sm-6 col-xs-12">
-													<div class="customer-login mt-30">
-														<!--
-														<h4 class="title-1 title-border text-uppercase">coupon discount</h4>
-														<p class="text-gray">Enter your coupon code if you have one!</p>
-														<input type="text" placeholder="Enter your code here.">
-														<button type="submit" data-text="apply coupon" class="button-one submit-button mt-15">apply coupon</button>
-														-->
-														<h4 class="title-1 title-border text-uppercase">Place Order</h4>
-														<p class="text-gray">Enter your address and phone number below!</p>
-														<input id="mob" type="text" placeholder="Enter Mobile Number">
-														<textarea id="address" class="custom-textarea" placeholder="Enter Address..." required></textarea>
-														<div class="text-right">
-															<button onClick="finalSubmit()" data-text="get a quote" class="button-one submit-button mt-15">Place Order</button>
-														</div>
-													</div>
-													<script>
-														function finalSubmit() {
-															const mobile = document.getElementById('mob').value.trim();
-															const address = document.getElementById('address').value.trim();
-															if (!mobile || mobile.length !== 10) alert("Enter a valid mobile number!");
-															else if (!address) alert("Enter a valid address!");
-															$.ajax({
-																url: "/add/order",
-																type: "POST",
-																data: {
-																	mobile, address
-																},
-																success: function(data) {
-																	console.log(data)
-																	if (data == "no") {
-																		alert("Couldn't place the order. Reloading");
-																		windows.location.reload();
-																	}
-																	else {
-																		alert("Success");
-																		window.location.replace(data);
-																	}
-																}
-															});
-														}
-													</script>
 												</div>
 											</div>
 											<div class="row">
@@ -411,9 +383,11 @@
 																<input type="text" placeholder="Post code">
 															</div>
 														</div>
-													</div>
+														<button type="submit" data-text="get a quote" class="button-one submit-button mt-15">get a quote</button>
+													</div>											
 												</div>
 											</div>
+										</form>		
 									</div>
 									<!-- shopping-cart end -->
 									<!-- wishlist start -->
@@ -437,15 +411,15 @@
 																	<!-- Single-product start -->
 																	<div class="single-product">
 																		<div class="product-img">
-																			<a href="single-product.html"><img src="img/product/2.jpg" alt="" /></a>
+																			<a href="single-product.html"><img th:src="@{/img/product/2.jpg}" alt="" /></a>
 																		</div>
 																		<div class="product-info">
-																			<h4 class="post-title"><a class="text-light-black" href="#">dummys product name</a></h4>
+																			<h4 class="post-title"><a class="text-light-black" href="#">dummy product name</a></h4>
 																			<p class="mb-0">Color :  Black</p>
 																			<p class="mb-0">Size : SL</p>
 																		</div>
 																	</div>
-																	<!-- Single-product end -->
+																	<!-- Single-product end -->				
 																</td>
 																<td class="product-price">$56.00</td>
 																<td class="product-stock">in stock</td>
@@ -461,7 +435,7 @@
 																	<!-- Single-product start -->
 																	<div class="single-product">
 																		<div class="product-img">
-																			<a href="single-product.html"><img src="img/product/12.jpg" alt="" /></a>
+																			<a href="single-product.html"><img th:src="@{/img/product/12.jpg}" alt="" /></a>
 																		</div>
 																		<div class="product-info">
 																			<h4 class="post-title"><a class="text-light-black" href="#">dummy product name</a></h4>
@@ -485,7 +459,7 @@
 																	<!-- Single-product start -->
 																	<div class="single-product">
 																		<div class="product-img">
-																			<a href="single-product.html"><img src="img/product/6.jpg" alt="" /></a>
+																			<a href="single-product.html"><img th:src="@{/img/product/6.jpg}" alt="" /></a>
 																		</div>
 																		<div class="product-info">
 																			<h4 class="post-title"><a class="text-light-black" href="#">dummy product name</a></h4>
@@ -643,15 +617,15 @@
 																<!-- Accordion start -->
 																<h3 class="payment-accordion-toggle">PayPal</h3>
 																<div class="payment-content">
-																	<p>Pay via PayPal; you can pay with your credit card if you don’t have a PayPal account.</p>
-																	<a href="#"><img src="img/payment/1.png" alt="" /></a>
-																	<a href="#"><img src="img/payment/2.png" alt="" /></a>
-																	<a href="#"><img src="img/payment/3.png" alt="" /></a>
-																	<a href="#"><img src="img/payment/4.png" alt="" /></a>
+																	<p>Pay via PayPal; you can pay with your credit card if you don�t have a PayPal account.</p>
+																	<a href="#"><img th:src="@{/img/payment/1.png}" alt="" /></a>
+																	<a href="#"><img th:src="@{/img/payment/2.png}" alt="" /></a>
+																	<a href="#"><img th:src="@{/img/payment/3.png}" alt="" /></a>
+																	<a href="#"><img th:src="@{/img/payment/4.png}" alt="" /></a>
 																</div>
 																<!-- Accordion end --> 
 																<button class="button-one submit-button mt-15" data-text="place order" type="submit">place order</button>			
-															</div>
+															</div>															
 														</div>
 													</div>
 												</div>
@@ -660,27 +634,27 @@
 									</div>
 									<!-- check-out end -->
 									<!-- order-complete start -->
-									<div class="tab-pane" id="order-complete">
+									<div class="tab-pane active" id="order-complete">
 										<form action="#">
-											<div class="thank-recieve bg-white mb-30">
+											<div th:if="${param.success}" class="thank-recieve bg-white mb-30">
 												<p>Thank you. Your order has been received.</p>
 											</div>
 											<div class="order-info bg-white text-center clearfix mb-30">
 												<div class="single-order-info">
 													<h4 class="title-1 text-uppercase text-light-black mb-0">order no</h4>
-													<p class="text-uppercase text-light-black mb-0"><strong>m 2653257</strong></p>
+													<p class="text-uppercase text-light-black mb-0"><strong th:text="${order.id}">m 2653257</strong></p>
 												</div>
 												<div class="single-order-info">
 													<h4 class="title-1 text-uppercase text-light-black mb-0">Date</h4>
-													<p class="text-uppercase text-light-black mb-0"><strong>june 15, 2017</strong></p>
+													<p class="text-uppercase text-light-black mb-0"><strong th:text="${order.orderDate}">june 15, 2017</strong></p>
 												</div>
 												<div class="single-order-info">
 													<h4 class="title-1 text-uppercase text-light-black mb-0">Total</h4>
-													<p class="text-uppercase text-light-black mb-0"><strong>$ 170.00</strong></p>
+													<p class="text-uppercase text-light-black mb-0">₹ <strong th:text="${order.total}">$ 170.00</strong></p>
 												</div>
 												<div class="single-order-info">
 													<h4 class="title-1 text-uppercase text-light-black mb-0">payment method</h4>
-													<p class="text-uppercase text-light-black mb-0"><a href="#"><strong>check payment</strong></a></p>
+													<p class="text-uppercase text-light-black mb-0"><strong>CASH ON DELIVERY</strong></p>
 												</div>
 											</div>
 											<div class="shop-cart-table check-out-wrap">
@@ -696,29 +670,25 @@
 																	</tr>
 																</thead>
 																<tbody>
-																	<tr>
-																		<td>Dummy Product Name  x 2</td>
-																		<td class="text-right">$86.00</td>
-																	</tr>
-																	<tr>
-																		<td>Dummy Product Name  x 1</td>
-																		<td class="text-right">$69.00</td>
+																	<tr th:each="orderItem: ${orderItems}" th:with="prod=${products.get(orderItem)}">
+																		<td><span th:text="${prod.getProductName}" /> x <span th:text="${orderItem.quantity}" /></td>
+																		<td class="text-right">₹ <span th:text="${prod.getMrp * orderItem.quantity}" /></td>
 																	</tr>
 																	<tr>
 																		<td>Cart Subtotal</td>
-																		<td class="text-right">$155.00</td>
+																		<td class="text-right">₹<span th:text="${order.total - 35 - 15}" /></td>
 																	</tr>
 																	<tr>
-																		<td>Shipping and Handing</td>
-																		<td class="text-right">$15.00</td>
+																		<td>Processing Fees</td>
+																		<td class="text-right">₹15.00</td>
 																	</tr>
 																	<tr>
-																		<td>Vat</td>
-																		<td class="text-right">$00.00</td>
+																		<td>Delivery Charges</td>
+																		<td class="text-right">₹35.00</td>
 																	</tr>
 																	<tr>
 																		<td>Order Total</td>
-																		<td class="text-right">$170.00</td>
+																		<td class="text-right">₹ <span th:text="${order.total}" /></td>
 																	</tr>
 																</tbody>
 															</table>
@@ -727,31 +697,42 @@
 													<!-- payment-method -->
 													<div class="col-md-6 col-sm-6 col-sm-12 mt-xs-30">
 														<div class="payment-method  pl-20">
-															<h4 class="title-1 title-border text-uppercase mb-30">payment method</h4>
+															<h4 class="title-1 title-border text-uppercase mb-30">Order Details</h4>
 															<div class="payment-accordion">
 																<!-- Accordion start  -->
-																<h3 class="payment-accordion-toggle active">Direct Bank Transfer</h3>
+																<h3 class="payment-accordion-toggle active">Order Details</h3>
 																<div class="payment-content default">
-																	<p>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won't be shipped until the funds have cleared in our account.</p>
+																	<p>
+																		<strong>Order Status: </strong><span th:text="${order.getOrderStatus}" />
+																	</p>
+																	<p>
+																		<strong>Contact Provided: </strong><span th:text="${order.getContact}" />
+																	</p>
+																	<p>
+																		Please pay the full order amount (₹<span th:text="${order.total}" />) to the delivery boy at your premises. 
+																		Keep your Order ID as the payment reference.
+																	</p>
 																</div> 
 																<!-- Accordion end -->
 																<!-- Accordion start -->
-																<h3 class="payment-accordion-toggle">Cheque Payment</h3>
+																<h3 class="payment-accordion-toggle">Delivery Address</h3>
 																<div class="payment-content">
-																	<p>Please send your cheque to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</p>
+																	<p th:text="${order.deliveryAddress}" />
 																</div>
 																<!-- Accordion end -->
 																<!-- Accordion start -->
-																<h3 class="payment-accordion-toggle">PayPal</h3>
+																<h3 class="payment-accordion-toggle">Payment Modes</h3>
 																<div class="payment-content">
-																	<p>Pay via PayPal; you can pay with your credit card if you don’t have a PayPal account.</p>
-																	<a href="#"><img src="img/payment/1.png" alt="" /></a>
-																	<a href="#"><img src="img/payment/2.png" alt="" /></a>
-																	<a href="#"><img src="img/payment/3.png" alt="" /></a>
-																	<a href="#"><img src="img/payment/4.png" alt="" /></a>
+																	<p>
+																		All modern payment methods are accepted by our delivery clients.
+																		These include Cash, UPI, Bank Transfer, and Debit/Credit card payments.
+																	</p>
+																	<p>We accept the following modes for Card payment.</p>
+																	<a href="#"><img th:src="@{/img/payment/1.png}" alt="" /></a>
+																	<a href="#"><img th:src="@{/img/payment/2.png}" alt="" /></a>
+																	<a href="#"><img th:src="@{/img/payment/3.png}" alt="" /></a>
+																	<a href="#"><img th:src="@{/img/payment/4.png}" alt="" /></a>
 																</div>
-																<!-- Accordion end --> 
-																<button class="button-one submit-button mt-15" data-text="place order" type="submit">place order</button>			
 															</div>															
 														</div>
 													</div>
@@ -767,7 +748,7 @@
 					</div>
 				</div>
 			</div>
-			<!-- SHOPPING-CART-AREA END -->
+			<!-- ORDER-AREA END -->
 			<!-- FOOTER START -->
 			<footer>
 				<!-- Footer-area start -->
@@ -835,10 +816,10 @@
 							</div>
 							<div class="col-sm-6 col-xs-12">
 								<div class="payment  text-right">
-									<a href="#"><img src="img/payment/1.png" alt="" /></a>
-									<a href="#"><img src="img/payment/2.png" alt="" /></a>
-									<a href="#"><img src="img/payment/3.png" alt="" /></a>
-									<a href="#"><img src="img/payment/4.png" alt="" /></a>
+									<a href="#"><img th:src="@{/img/payment/1.png}" alt="" /></a>
+									<a href="#"><img th:src="@{/img/payment/2.png}" alt="" /></a>
+									<a href="#"><img th:src="@{/img/payment/3.png}" alt="" /></a>
+									<a href="#"><img th:src="@{/img/payment/4.png}" alt="" /></a>
 								</div>
 							</div>
 						</div>
@@ -912,31 +893,31 @@
 
 		<!-- all js here -->
 		<!-- jquery latest version -->
-		<script src="js/vendor/jquery-1.12.0.min.js"></script>
+		<script th:src="@{/js/vendor/jquery-1.12.0.min.js}"></script>
 		<!-- bootstrap js -->
-		<script src="js/bootstrap.min.js"></script>
+		<script th:src="@{/js/bootstrap.min.js}"></script>
 		<!-- jquery.meanmenu js -->
-		<script src="js/jquery.meanmenu.js"></script>
+		<script th:src="@{/js/jquery.meanmenu.js}"></script>
 		<!-- slick.min js -->
-		<script src="js/slick.min.js"></script>
+		<script th:src="@{/js/slick.min.js}"></script>
 		<!-- jquery.treeview js -->
-		<script src="js/jquery.treeview.js"></script>
+		<script th:src="@{/js/jquery.treeview.js}"></script>
 		<!-- lightbox.min js -->
-		<script src="js/lightbox.min.js"></script>
+		<script th:src="@{/js/lightbox.min.js}"></script>
 		<!-- jquery-ui js -->
-		<script src="js/jquery-ui.min.js"></script>
+		<script th:src="@{/js/jquery-ui.min.js}"></script>
 		<!-- jquery.nivo.slider js -->
-		<script src="lib/js/jquery.nivo.slider.js"></script>
-		<script src="lib/home.js"></script>
+		<script th:src="@{lib/js/jquery.nivo.slider.js}"></script>
+		<script th:src="@{lib/home.js}"></script>
 		<!-- jquery.nicescroll.min js -->
-		<script src="js/jquery.nicescroll.min.js"></script>
+		<script th:src="@{/js/jquery.nicescroll.min.js}"></script>
 		<!-- countdon.min js -->
-		<script src="js/countdon.min.js"></script>
+		<script th:src="@{/js/countdon.min.js}"></script>
 		<!-- wow js -->
-		<script src="js/wow.min.js"></script>
+		<script th:src="@{/js/wow.min.js}"></script>
 		<!-- plugins js -->
-		<script src="js/plugins.js"></script>
+		<script th:src="@{/js/plugins.js}"></script>
 		<!-- main js -->
-		<script src="js/main.js"></script>
+		<script th:src="@{/js/main.js}"></script>
 	</body>
 </html>
