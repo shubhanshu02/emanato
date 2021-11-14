@@ -3,14 +3,13 @@
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
-		<title>Login || Tarun Kirana Store</title>
+		<title>Add New Product || Tarun Kirana Store</title>
 		<meta name="description" content="">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css" integrity="sha384-7ynz3n3tAGNUYFZD3cWe5PDcE36xj85vyFkawcF6tIwxvIecqKvfwLiaFdizhPpN" crossorigin="anonymous">
 		<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
 		<!-- Place favicon.ico in the root directory -->
-		
 		<!-- Google Font -->
 		<link href='https://fonts.googleapis.com/css?family=Lato:400,700,900' rel='stylesheet' type='text/css'>
 		<link href='https://fonts.googleapis.com/css?family=Bree+Serif' rel='stylesheet' type='text/css'>
@@ -207,12 +206,12 @@
 						<div class="col-md-12">
 							<div class="heading-banner">
 								<div class="heading-banner-title">
-									<h2>Login</h2>
+									<h2>Add New Product</h2>
 								</div>
 								<div class="breadcumbs pb-15">
 									<ul>
 										<li><a th:href="@{/}">Home</a></li>
-										<li>Login</li>
+										<li>Add New Product</li>
 									</ul>
 								</div>
 							</div>
@@ -221,26 +220,41 @@
 				</div>
 			</div>
 			<!-- HEADING-BANNER END -->
-			<!-- SHOPPING-CART-AREA START -->
+			<!-- SHOPPING-CART-AREA START -->	
 			<div class="login-area  pt-80 pb-80">
 				<div class="container">
-                    <form th:action="@{/login}" th:object="${user}" method="post">
+                    <form th:action="@{/addproduct}" th:object="${product}" method="post" enctype="multipart/form-data">
 						<div class="row ">
                             <div class="col-md-3 .d-none .d-lg-block"></div>
 							<div class="col-md-6 col-sm-12 col-xs-12">
 								<div class="customer-login text-left">
-									<h4 class="title-1 title-border text-uppercase mb-30">Registered customers</h4>
-									<p class="text-gray">If you have an account with us, Please login!</p>
-                                    <label for="inputEmail" class="sr-only">Email address</label>
-                                    <input type="email" name="email" class="form-control" placeholder="Email here..." th:field="*{email}" required>
-                                    <label for="inputPassword" class="sr-only">Password</label>
-                                    <div style="height: 1rem;"></div>
-									<input type="password" name="password" class="form-control" placeholder="Password" th:field="*{password}" required>
+									<h4 class="title-1 title-border text-uppercase mb-30">Add New Product</h4>
+									<p class="text-gray">The staff is allowed to add new products to the catalog.</p>
+									<label for="image" class="form-label">Product Name</label>
+                                    <input type="text" class="form-control" placeholder="Product Name..." th:field="*{productName}" required>
+									<label for="image" class="form-label">Size</label>
+                                    <input type="text" class="form-control" placeholder="Size..." th:field="*{size}" required>
+									<label for="image" class="form-label">MRP</label>
+									<input type="number" class="form-control" placeholder="Maximum Retail Price (MRP)..." th:field="*{mrp}" required>
+									<label class="form-label">Quantity Available</label>
+									<input type="number" class="form-control" placeholder="Quality Available..." th:field="*{quantityAvailable}" required>
+									<label  class="form-label">Category</label>
+									<select class="form-control" required th:field="*{categoryId}">
+										<div >
+											<option th:each="cat: ${categories}" th:text="${cat.categoryName}" th:value="${cat.id}" />
+										</div>
+									</select>
+									<label  class="form-label">Product Details</label>
+									<textarea class="custom-textarea" name="message" placeholder="Details here..." th:field="*{details}" required></textarea>
+									<label for="image" class="form-label">Product Image</label>
+									<input type="file" name="image" accept="image/png, image/jpeg" required />
+
                                     <p class="alert alert-danger" th:if="${param.error}">Invalid email or password.</p>
-									<button type="submit" data-text="login" class="button-one submit-button mt-15">login</button>
-                                    <div class="text-right text-gray">
-                                        Not a user yet?<a class="text-gray" th:href="@{/register}"> Register</a>
-                                    </div>
+									<button type="submit" data-text="Add Product" class="button-one submit-button mt-15">Add Product</button>
+									<div class="pt-30">
+                                    	<p class="alert alert-danger" th:if="${param.error}">Product Already Exists.</p>
+										<p class="alert alert-success" th:if="${param.success}">Successfully added the product.</p>
+									</div>
 								</div>
 							</div>
 						</div>

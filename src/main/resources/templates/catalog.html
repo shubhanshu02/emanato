@@ -1,13 +1,12 @@
 <!doctype html>
-<html xmlns:th="http://www.thymeleaf.org" class="no-js" lang="en">
+<html class="no-js" lang="en">
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
-		<title>Login || Tarun Kirana Store</title>
+		<title>Shop || Hurst</title>
 		<meta name="description" content="">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css" integrity="sha384-7ynz3n3tAGNUYFZD3cWe5PDcE36xj85vyFkawcF6tIwxvIecqKvfwLiaFdizhPpN" crossorigin="anonymous">
 		<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
 		<!-- Place favicon.ico in the root directory -->
 		
@@ -15,8 +14,6 @@
 		<link href='https://fonts.googleapis.com/css?family=Lato:400,700,900' rel='stylesheet' type='text/css'>
 		<link href='https://fonts.googleapis.com/css?family=Bree+Serif' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
-
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css" integrity="sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7" crossorigin="anonymous">
 
 
 		<!-- all css here -->
@@ -207,12 +204,12 @@
 						<div class="col-md-12">
 							<div class="heading-banner">
 								<div class="heading-banner-title">
-									<h2>Login</h2>
+									<h2>Catalog</h2>
 								</div>
 								<div class="breadcumbs pb-15">
 									<ul>
-										<li><a th:href="@{/}">Home</a></li>
-										<li>Login</li>
+										<li><a href="#">Home</a></li>
+										<li>Catalog</li>
 									</ul>
 								</div>
 							</div>
@@ -221,34 +218,203 @@
 				</div>
 			</div>
 			<!-- HEADING-BANNER END -->
-			<!-- SHOPPING-CART-AREA START -->
-			<div class="login-area  pt-80 pb-80">
+			<!-- PRODUCT-AREA START -->
+			<div class="product-area pt-80 pb-80 product-style-2">
 				<div class="container">
-                    <form th:action="@{/login}" th:object="${user}" method="post">
-						<div class="row ">
-                            <div class="col-md-3 .d-none .d-lg-block"></div>
-							<div class="col-md-6 col-sm-12 col-xs-12">
-								<div class="customer-login text-left">
-									<h4 class="title-1 title-border text-uppercase mb-30">Registered customers</h4>
-									<p class="text-gray">If you have an account with us, Please login!</p>
-                                    <label for="inputEmail" class="sr-only">Email address</label>
-                                    <input type="email" name="email" class="form-control" placeholder="Email here..." th:field="*{email}" required>
-                                    <label for="inputPassword" class="sr-only">Password</label>
-                                    <div style="height: 1rem;"></div>
-									<input type="password" name="password" class="form-control" placeholder="Password" th:field="*{password}" required>
-                                    <p class="alert alert-danger" th:if="${param.error}">Invalid email or password.</p>
-									<button type="submit" data-text="login" class="button-one submit-button mt-15">login</button>
-                                    <div class="text-right text-gray">
-                                        Not a user yet?<a class="text-gray" th:href="@{/register}"> Register</a>
-                                    </div>
+					<!-- Shop-Content End -->
+					<div class="shop-content">
+						<div class="row">
+							<!--
+							<div class="col-md-12">
+								<div class="product-option mb-30 clearfix">
+									<div class="dropdown floatleft">
+										<button class="option-btn" >
+										Categories
+										</button>
+										<div class="dropdown-menu dropdown-width" >
+											<aside class="widget widget-categories">
+												<div class="widget-title">
+													<h4>Categories</h4>
+												</div>
+												<div id="cat-treeview"  class="widget-info product-cat boxscrol2">
+													<ul>
+														<li><span>Chair</span>
+															<ul>
+																<li><a href="#">T-Shirts</a></li>
+																<li><a href="#">Striped Shirts</a></li>
+																<li><a href="#">Half Shirts</a></li>
+																<li><a href="#">Formal Shirts</a></li>
+																<li><a href="#">Bilazers</a></li>
+															</ul>
+														</li>          
+														<li class="open"><span>Furniture</span>
+															<ul>
+																<li><a href="#">Men Bag</a></li>
+																<li><a href="#">Shoes</a></li>
+																<li><a href="#">Watch</a></li>
+																<li><a href="#">T-shirt</a></li>
+																<li><a href="#">Shirt</a></li>
+															</ul>
+														</li>          
+														<li><span>Accessories</span>
+															<ul>
+																<li><a href="#">T-Shirts</a></li>
+																<li><a href="#">Striped Shirts</a></li>
+																<li><a href="#">Half Shirts</a></li>
+																<li><a href="#">Formal Shirts</a></li>
+																<li><a href="#">Bilazers</a></li>
+															</ul>
+														</li>
+														<li><span>Top Brands</span>
+															<ul>
+																<li><a href="#">T-Shirts</a></li>
+																<li><a href="#">Striped Shirts</a></li>
+																<li><a href="#">Half Shirts</a></li>
+																<li><a href="#">Formal Shirts</a></li>
+																<li><a href="#">Bilazers</a></li>
+															</ul>
+														</li>
+														<li><span>Jewelry</span>
+															<ul>
+																<li><a href="#">T-Shirts</a></li>
+																<li><a href="#">Striped Shirts</a></li>
+																<li><a href="#">Half Shirts</a></li>
+																<li><a href="#">Formal Shirts</a></li>
+																<li><a href="#">Bilazers</a></li>
+															</ul>
+														</li>
+													</ul>
+												</div>
+											</aside>
+										</div>
+									</div>	
+									<div class="dropdown floatleft">
+										<button class="option-btn" >
+										Price
+										</button>
+										<div class="dropdown-menu dropdown-width" >
+											<aside class="widget shop-filter">
+												<div class="widget-title">
+													<h4>Price</h4>
+												</div>
+												<div class="widget-info">
+													<div class="price_filter">
+														<div class="price_slider_amount">
+															<input type="submit"  value="You range :"/> 
+															<input type="text" id="amount" name="price"  placeholder="Add Your Price" /> 
+														</div>
+														<div id="slider-range"></div>
+													</div>
+												</div>
+											</aside>
+										</div>
+									</div>	
+									<div class="dropdown floatleft">
+										<button class="option-btn">
+										Color
+										</button>
+										<div class="dropdown-menu dropdown-width" >
+											<aside class="widget widget-color">
+												<div class="widget-title">
+													<h4>Color</h4>
+												</div>
+												<div class="widget-info color-filter clearfix">
+													<ul>
+														<li><a href="#"><span class="color color-1"></span>LightSalmon<span class="count">12</span></a></li>
+														<li><a href="#"><span class="color color-2"></span>Dark Salmon<span class="count">20</span></a></li>
+														<li><a href="#"><span class="color color-3"></span>Tomato<span class="count">59</span></a></li>
+														<li class="active"><a href="#"><span class="color color-4"></span>Deep Sky Blue<span class="count">45</span></a></li>
+														<li><a href="#"><span class="color color-5"></span>Electric Purple<span class="count">78</span></a></li>
+														<li><a href="#"><span class="color color-6"></span>Atlantis<span class="count">10</span></a></li>
+														<li><a href="#"><span class="color color-7"></span>Deep Lilac<span class="count">15</span></a></li>
+													</ul>
+												</div>
+											</aside>
+										</div>
+									</div>
+									<div class="dropdown floatleft">
+										<button class="option-btn">
+										Size
+										</button>
+										<div class="dropdown-menu dropdown-width" >
+											<aside class="widget widget-size">
+												<div class="widget-title">
+													<h4>Size</h4>
+												</div>
+												<div class="widget-info size-filter clearfix">
+													<ul>
+														<li><a href="#">M</a></li>
+														<li class="active"><a href="#">S</a></li>
+														<li><a href="#">L</a></li>
+														<li><a href="#">SL</a></li>
+														<li><a href="#">XL</a></li>
+													</ul>
+												</div>
+											</aside>
+										</div>
+									</div>
+									<div class="showing text-right">
+										<p class="mb-0 hidden-xs">Showing 01-09 of 17 Results</p>
+									</div>
+								</div>
+							</div>
+							-->
+							<div class="col-md-12">
+								<div class="row">
+									<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12" th:each="product: ${products}" th:if="${product.quantityAvailable > 0}">
+										<div class="single-product">
+											<div class="product-img">
+												<span class="pro-price-2">
+													₹
+													<span th:text="${product.mrp}"></span>
+												</span>
+												<a href="single-product.html"><img th:src="${product.getPhotosImagePath}"  alt="" /></a>
+											</div>
+											<div class="product-info clearfix text-center">
+												<div class="fix">
+													<h4 class="post-title"><a href="#" th:text="${product.productName}"></a></h4>
+													<p class="text-muted" th:text="${product.size}"></p>
+												</div>
+												<div class="fix">
+													<span class="pro-rating">
+														<form action="/add/cartItem" method="post">
+															<div class="text-left">
+																<p class="text-muted">Quantity</p>
+																<input type="hidden" name="id" th:value="${product.id}">
+																<input type="number" name="quantity" value="1" min="1" th:max="${product.quantityAvailable}" >
+															</div>
+															<button type="submit" data-text="Add to Cart" class="button-one submit-button mt-15">Add to Cart</button>
+														</form>
+													</span>
+												</div>
+												<!--
+												<div class="fix">
+													<span class="pro-rating">
+														<a href="#"><i class="zmdi zmdi-star"></i></a>
+														<a href="#"><i class="zmdi zmdi-star"></i></a>
+														<a href="#"><i class="zmdi zmdi-star"></i></a>
+														<a href="#"><i class="zmdi zmdi-star-half"></i></a>
+														<a href="#"><i class="zmdi zmdi-star-half"></i></a>
+													</span>
+												</div>
+												<div class="product-action clearfix">
+													<a href="#" data-toggle="tooltip" data-placement="top" title="Wishlist"><i class="zmdi zmdi-favorite-outline"></i></a>
+													<a href="#" data-toggle="modal"  data-target="#productModal" title="Quick View"><i class="zmdi zmdi-zoom-in"></i></a>
+													<a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="zmdi zmdi-refresh"></i></a>
+													<a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
+												</div>
+												-->
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
-					</form>
-
+					</div>
+					<!-- Shop-Content End -->
 				</div>
 			</div>
-			<!-- SHOPPING-CART-AREA END -->
+			<!-- PRODUCT-AREA END -->
 			<!-- FOOTER START -->
 			<footer>
 				<!-- Footer-area start -->
@@ -260,8 +426,8 @@
 									<h3 class="footer-title  title-border">Contact Us</h3>
 									<ul class="footer-contact">
 										<li><span>Address :</span>48 G64, Jhalawar Road
-                                        <br>Kota, India</li>
-										<li><span>Cell-Phone :</span> +91 39883988</li>
+<br>Kota, India</li>
+										<li><span>Cell-Phone :</span>+91 39883988</li>
 										<li><span>Email :</span>tk.store@tkstore.com</li>
 									</ul>
 								</div>

@@ -3,109 +3,83 @@ package com.shubhanshu02.shop.Models;
 import java.sql.Date;
 
 public class Order {
-    private enum Status {
-        PENDING, PROCESSING, COMPLETED
-    }
-
-    private enum TransactionMode {
-        COD, ONLINE
-    }
 
     private int id;
-    private String customerName;
     private Date orderDate;
     private int total;
-    private Status orderStatus;
-    private int userEmail;
-    private TransactionMode transactionMode;
-    private String onlineTransactionID;
+    private String orderStatus;
+    private String userEmail;
+    private String deliveryAddress;
+    private String contact;
 
-    public Order(int id, String customerName, Date orderDate, int total, String orderStatus, int userEmail,
-            String transactionMode) {
-        this.id = id;
-        this.customerName = customerName;
-        this.orderDate = orderDate;
-        this.total = total;
-        this.orderStatus = Status.valueOf(orderStatus);
-        this.userEmail = userEmail;
-        this.transactionMode = TransactionMode.valueOf(transactionMode);
-
+    public Order() {
     }
 
-    public Order(int id, String customerName, Date orderDate, int total, String orderStatus, int userEmail,
-            String transactionMode, String onlineTransactionID) {
+    public Order(int id, Date orderDate, int total, String orderStatus, String userEmail, String deliveryAddress,
+            String contact) {
         this.id = id;
-        this.customerName = customerName;
         this.orderDate = orderDate;
         this.total = total;
-        this.orderStatus = Status.valueOf(orderStatus);
+        this.orderStatus = orderStatus;
         this.userEmail = userEmail;
-        this.transactionMode = TransactionMode.valueOf(transactionMode);
-        this.onlineTransactionID = onlineTransactionID;
+        this.deliveryAddress = deliveryAddress;
+        this.contact = contact;
     }
 
     public int getId() {
-        return this.id;
+        return id;
     }
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public String getCustomerName() {
-        return this.customerName;
+    public Date getOrderDate() {
+        return orderDate;
     }
 
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
-    }
-
-    public Date getDate() {
-        return this.orderDate;
-    }
-
-    public void setDate(Date orderDate) {
+    public void setOrderDate(Date orderDate) {
         this.orderDate = orderDate;
     }
 
     public int getTotal() {
-        return this.total;
+        return total;
     }
 
     public void setTotal(int total) {
         this.total = total;
     }
 
-    public Status getStatus() {
-        return this.orderStatus;
+    public String getOrderStatus() {
+        return orderStatus;
     }
 
-    public void setStatus(Status orderStatus) {
+    public void setOrderStatus(String orderStatus) {
         this.orderStatus = orderStatus;
     }
 
-    public int getUserEmail() {
-        return this.userEmail;
+    public String getUserEmail() {
+        return userEmail;
     }
 
-    public void setUserEmail(int userEmail) {
+    public void setUserEmail(String userEmail) {
         this.userEmail = userEmail;
     }
 
-    public TransactionMode getTransactionMode() {
-        return this.transactionMode;
+    public String getDeliveryAddress() {
+        return deliveryAddress;
     }
 
-    public void setTransactionMode(TransactionMode transactionMode) {
-        this.transactionMode = transactionMode;
+    public void setDeliveryAddress(String deliveryAddress) {
+        this.deliveryAddress = deliveryAddress;
     }
 
-    public String getOnlineTransactionID() {
-        return this.onlineTransactionID;
+    public String getContact() {
+        return contact;
     }
 
-    public void setOnlineTransactionID(String onlineTransactionID) {
-        this.onlineTransactionID = onlineTransactionID;
+    public void setContact(String contact) {
+        this.contact = contact;
     }
 
 }

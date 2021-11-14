@@ -2,73 +2,73 @@ package com.shubhanshu02.shop.Models;
 
 public class OrderItem {
 
-    private int productId;
-    private int productQuantity;
     private int orderId;
+    private int productId;
+    private int quantity;
 
-    public OrderItem(int productId, int productQuantity, int orderId) {
-        this.productId = productId;
-        this.productQuantity = productQuantity;
+    public OrderItem() {
+    }
+
+    public OrderItem(int orderId, int productId, int quantity) {
         this.orderId = orderId;
-    }
-
-    public int getProductId() {
-        return productId;
-    }
-
-    public void setProductId(int productId) {
         this.productId = productId;
-    }
-
-    public int getProductQuantity() {
-        return productQuantity;
-    }
-
-    public void setProductQuantity(int productQuantity) {
-        this.productQuantity = productQuantity;
-    }
-
-    public int getProductPrice() {
-        // TODO: SQL IMPLEMENTATION
-        return 0;
+        this.quantity = quantity;
     }
 
     public int getOrderId() {
-        return orderId;
+        return this.orderId;
     }
 
     public void setOrderId(int orderId) {
         this.orderId = orderId;
     }
 
-    @Override
-    public String toString() {
-        return "OrderItem{" + "productId=" + productId + ", productQuantity=" + productQuantity + ", orderId=" + orderId
-                + '}';
+    public int getProductId() {
+        return this.productId;
+    }
+
+    public void setProductId(int productId) {
+        this.productId = productId;
+    }
+
+    public int getQuantity() {
+        return this.quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public OrderItem orderId(int orderId) {
+        setOrderId(orderId);
+        return this;
+    }
+
+    public OrderItem productId(int productId) {
+        setProductId(productId);
+        return this;
+    }
+
+    public OrderItem quantity(int quantity) {
+        setQuantity(quantity);
+        return this;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o)
+        if (o == this)
             return true;
-        if (o == null || getClass() != o.getClass())
+        if (!(o instanceof OrderItem)) {
             return false;
-
+        }
         OrderItem orderItem = (OrderItem) o;
-
-        if (productId != orderItem.productId)
-            return false;
-        if (productQuantity != orderItem.productQuantity)
-            return false;
-        return orderId == orderItem.orderId;
+        return orderId == orderItem.orderId && productId == orderItem.productId && quantity == orderItem.quantity;
     }
 
     @Override
-    public int hashCode() {
-        int result = productId;
-        result = 31 * result + productQuantity;
-        result = 31 * result + orderId;
-        return result;
+    public String toString() {
+        return "{" + " orderId='" + getOrderId() + "'" + ", productId='" + getProductId() + "'" + ", quantity='"
+                + getQuantity() + "'" + "}";
     }
 
 }

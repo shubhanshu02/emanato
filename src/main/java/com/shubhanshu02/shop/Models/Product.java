@@ -1,11 +1,13 @@
 package com.shubhanshu02.shop.Models;
 
+import java.beans.Transient;
+
 public class Product {
 
     private int mrp;
     private int id;
     private String productName;
-    private String ProductImage;
+    private String productImage;
     private String size;
     private int categoryId;
     private int quantityAvailable;
@@ -16,7 +18,7 @@ public class Product {
         this.mrp = mrp;
         this.id = id;
         this.productName = productName;
-        this.ProductImage = ProductImage;
+        this.productImage = ProductImage;
         this.size = size;
         this.categoryId = categoryId;
         this.quantityAvailable = quantityAvailable;
@@ -47,11 +49,18 @@ public class Product {
     }
 
     public String getProductImage() {
-        return this.ProductImage;
+        return this.productImage;
     }
 
     public void setProductImage(String ProductImage) {
-        this.ProductImage = ProductImage;
+        this.productImage = ProductImage;
+    }
+
+    @Transient
+    public String getPhotosImagePath() {
+        if (productImage == null)
+            return null;
+        return "/product-photos/" + productImage;
     }
 
     public String getSize() {

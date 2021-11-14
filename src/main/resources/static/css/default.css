@@ -203,7 +203,7 @@
 /* -----------------------------------------------------
 	Input
 ----------------------------------------------------- */
-input[type="text"], input[type="email"], input[type="password"] {
+input[type="text"], input[type="email"], input[type="password"], input[type="number"], select {
   background: #f6f6f6 none repeat scroll 0 0;
   border: medium none;
   box-shadow: none;
@@ -253,7 +253,21 @@ button {
   padding: 0 30px;
   text-transform: uppercase;
 }
+
 .submit-button.button-one::after {
+  border-color: transparent;
+}
+
+.quantity-edit-button {
+  background: #c87065 none repeat scroll 0 0;
+  color: #fff;
+  height: 25px;
+  line-height: 25px;
+  padding: 0 20px;
+  text-transform: uppercase;
+}
+
+.quantity-edit-button.button-one::after {
   border-color: transparent;
 }
 .submit-btn-2 {

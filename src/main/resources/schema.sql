@@ -28,13 +28,12 @@ CREATE TABLE IF NOT EXISTS Product (
 
 CREATE TABLE IF NOT EXISTS orders (
   id BIGINT AUTO_INCREMENT PRIMARY KEY,
-  customerName VARCHAR(256) NOT NULL DEFAULT "",
   orderDate DATE NOT NULL,
   total INT NOT NULL,
   orderStatus VARCHAR(40) NOT NULL,
-  onlineTransactionID VARCHAR(40) NOT NULL,
-  transactionMode VARCHAR(15) NOT NULL,
-  userEmail VARCHAR(255) NOT NULL,
+  userEmail VARCHAR(255),
+  deliveryAddress VARCHAR(512),
+  contact VARCHAR(255),
   FOREIGN KEY (userEmail) REFERENCES users(email)
 );
 
@@ -47,12 +46,14 @@ CREATE TABLE IF NOT EXISTS storeExpenditure (
   FOREIGN KEY (userEmail) REFERENCES users(email)
 );
 
+
 CREATE TABLE IF NOT EXISTS cart (
-  id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  total INT NOT NULL,
   userEmail VARCHAR(255) NOT NULL,
+  productId BIGINT NOT NULL,
+  quantity INT NOT NULL,
+  PRIMARY KEY (userEmail, productId),
   FOREIGN KEY (userEmail) REFERENCES users(email),
-  UNIQUE (userEmail)
+  FOREIGN KEY (productId) REFERENCES Product(id)
 );
 
 CREATE TABLE IF NOT EXISTS UserPhoneNumber (
@@ -63,11 +64,12 @@ CREATE TABLE IF NOT EXISTS UserPhoneNumber (
 );
 
 CREATE TABLE IF NOT EXISTS OrderItem (
-  productId BIGINT NOT NULL,
-  productQuantity INT NOT NULL,
   orderId BIGINT NOT NULL,
-  FOREIGN KEY (productId) REFERENCES Product(Id),
-  FOREIGN KEY (orderId) REFERENCES orders(ID)
+  productId BIGINT NOT NULL,
+  quantity INT NOT NULL,
+  PRIMARY KEY (orderId, productId),
+  FOREIGN KEY (orderId) REFERENCES orders(id),
+  FOREIGN KEY (productId) REFERENCES Product(id)
 );
 
 CREATE TABLE IF NOT EXISTS Offer (
