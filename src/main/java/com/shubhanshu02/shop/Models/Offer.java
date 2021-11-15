@@ -19,6 +19,9 @@ public class Offer {
         this.freebies = freebies;
     }
 
+    public Offer() {
+    }
+
     public String getOfferCode() {
         return offerCode;
     }

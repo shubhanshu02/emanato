@@ -203,7 +203,7 @@
 /* -----------------------------------------------------
 	Input
 ----------------------------------------------------- */
-input[type="text"], input[type="email"], input[type="password"], input[type="number"], select {
+input[type="text"], input[type="date"], input[type="email"], input[type="password"], input[type="number"], select {
   background: #f6f6f6 none repeat scroll 0 0;
   border: medium none;
   box-shadow: none;
