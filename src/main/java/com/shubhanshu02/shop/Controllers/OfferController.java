@@ -60,7 +60,6 @@ public class OfferController {
     }
 
     @RequestMapping(value = "/delete/offer", method = RequestMethod.POST)
-
     @ResponseBody
     public String deleteCategory(WebRequest request, Model model) {
         String offerCode = request.getParameter("offerCode");

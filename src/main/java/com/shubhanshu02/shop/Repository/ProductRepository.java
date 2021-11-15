@@ -29,7 +29,7 @@ public class ProductRepository {
     };
 
     public List<Product> listAll() {
-        String sql = "SELECT * FROM Product";
+        String sql = "SELECT * FROM Product where quantityAvailable > 0";
         return jdbcTemplate.query(sql, productRowMapper);
 
     }
