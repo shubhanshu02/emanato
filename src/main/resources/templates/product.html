@@ -212,6 +212,7 @@
 									<ul class="">
 										<li class="active"><a href="#description" data-toggle="tab">Description</a></li>
 										<li><a href="#information" data-toggle="tab">Information</a></li>
+										<li><a href="#offers" data-toggle="tab">Offers</a></li>
 									</ul>
 								</div>
 							</div>
@@ -251,6 +252,51 @@
 											</p>
 										</div>
 									</div>
+									<div class="tab-pane" id="offers">
+										<div class="pro-tab-info pro-information">
+											<h3 class="tab-title title-border mb-30" th:text="${product.productName}">Offer Product name</h3>
+											<h5><u>Offers</u></h5>
+											<div class="pro-reviews mt-30">
+												<div class="customer-review mb-60">
+													<p>
+														At Tarun Kirana Store, we continuously provide offers to our customers' satisfaction.
+														Below is the list of all offers.
+													</p>
+													<table class="table">
+														<thead>
+														  	<tr>
+																<th scope="col">Offer Code</th>
+																<th scope="col">Duration</th>
+																<th scope="col">Discount</th>
+																<th scope="col">Freebies</th>
+																<th scope="col" sec:authorize="hasRole('ROLE_STAFF')">Delete Action</th>
+														  	</tr>
+														</thead>
+														<tbody>
+															<tr th:if="${offers.size() == 0}" >
+																<td>No Offers Found</td>
+																<td />
+																<td />
+																<td />
+																<td sec:authorize="hasRole('ROLE_STAFF')" />
+															</tr>
+														  	<tr th:each="off: ${offers}" th:object="${off}">
+																<td><strong th:text="*{getOfferCode}" /></td>
+																<td><span th:text="*{getStartDate}"/> to <span th:text="*{getEndDate}" /></td>
+																<td>₹ <span th:text="*{getDiscount}"/></td>
+																<td><span th:text="*{getFreebies}" /></td>
+																<td sec:authorize="hasRole('ROLE_STAFF')">
+																	<button th:onClick="deleteOffer([[${off.getOfferCode}]])" class="btn btn-default" aria-label="Delete" style="user-select: auto;">
+																		<i class="zmdi zmdi-close" aria-hidden="true" style="user-select: auto;" ></i>
+																	</button>
+																</td>
+														  	</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -258,6 +304,27 @@
 					<!-- single-product-tab end -->
 				</div>
 			</div>
+			<script>
+				function deleteOffer(offerCode) {
+					var r = confirm("Are you sure you want to delete this offer?");
+					if (r == true) {
+						$.ajax({
+							url: "/delete/offer",
+							type: "POST",
+							data: {
+								offerCode
+							},
+							success: function(data) {
+								if (data == "YES")
+									alert("Successfully Deleted");
+								else
+									alert("Couldn't delete. Reloading");
+								window.location.reload();
+							}
+						});
+					}
+				}
+			</script>
 			<!-- PRODUCT-AREA END -->
 			<!-- FOOTER START -->
 			<footer>

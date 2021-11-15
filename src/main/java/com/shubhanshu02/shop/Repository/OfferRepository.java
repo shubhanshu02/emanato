@@ -43,9 +43,9 @@ public class OfferRepository {
         return jdbcTemplate.queryForObject(query, OfferRowMapper, offerCode);
     }
 
-    public Offer getOfferByProductId(int productId) {
+    public List<Offer> getOfferByProductId(int productId) {
         String query = "SELECT * FROM Offer WHERE productId = ?";
-        return jdbcTemplate.queryForObject(query, OfferRowMapper, productId);
+        return jdbcTemplate.query(query, OfferRowMapper, productId);
     }
 
     public Boolean exists(String offerCode) {
@@ -57,4 +57,5 @@ public class OfferRepository {
         String query = "DELETE FROM Offer WHERE offerCode = ?";
         return jdbcTemplate.update(query, offerCode) > 0;
     }
+
 }
