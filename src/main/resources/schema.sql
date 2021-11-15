@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS Product (
   size VARCHAR(255) NOT NULL,
   categoryId BIGINT NOT NULL,
   quantityAvailable INT NOT NULL,
-  details VARCHAR(255) NOT NULL,
+  details TEXT(5000) NOT NULL,
   FOREIGN KEY (categoryId) REFERENCES category(id)
 );
 
@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS cart (
 );
 
 CREATE TABLE IF NOT EXISTS UserPhoneNumber (
-  phoneNumber INT NOT NULL,
+  phoneNumber BIGINT NOT NULL,
   email VARCHAR(255) NOT NULL,
   FOREIGN KEY (email) REFERENCES users(email),
   UNIQUE (phoneNumber, email)

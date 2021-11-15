@@ -2,8 +2,10 @@ package com.shubhanshu02.shop.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import com.shubhanshu02.shop.Models.User;
+import com.shubhanshu02.shop.Models.UserPhoneNumber;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -36,7 +38,6 @@ public class UserRepository {
         if (user.getRole() == null) {
             user.setrole("ROLE_USER");
         }
-        // TODO: Use BCryptPasswordEncoder to hash the password
         jdbcTemplate.update(query, user.getFirstName(), user.getMiddleName(), user.getLastName(), user.getEmail(),
                 user.getPassword(), user.getRole(), user.getAddress());
     }
@@ -45,6 +46,22 @@ public class UserRepository {
         String query = "UPDATE users SET firstName = ?, middleName = ?, lastName = ?, address = ? WHERE email = ?";
         jdbcTemplate.update(query, user.getFirstName(), user.getMiddleName(), user.getLastName(), user.getAddress(),
                 user.getEmail());
+    }
+
+    public List<UserPhoneNumber> getPhones(String userEmail) {
+        String query = "SELECT * FROM UserPhoneNumber WHERE email = ?";
+        return jdbcTemplate.query(query, new RowMapper<UserPhoneNumber>() {
+            @Override
+            public UserPhoneNumber mapRow(ResultSet res, int rowNum) throws SQLException {
+                return new UserPhoneNumber(res.getLong("phoneNumber"), res.getString("email"));
+            }
+        }, userEmail);
+    }
+
+    public Boolean addPhone(String userEmail, long phoneNumber) {
+        String query = "INSERT INTO UserPhoneNumber (phoneNumber, email) VALUES (?, ?)";
+        jdbcTemplate.update(query, phoneNumber, userEmail);
+        return true;
     }
 
 }

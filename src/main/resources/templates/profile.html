@@ -90,7 +90,7 @@
 							<li><a sec:authorize="isAnonymous()" th:href="@{/login}">Login</a></li>
 							<li><a sec:authorize="isAnonymous()" th:href="@{/register}">Register</a></li>
 							<li><a th:href="@{/catalog}">Catalog</a></li>
-							<li sec:authorize="hasRole('ROLE_USER')"><a href="#">Staff Pages</a>
+							<li sec:authorize="hasRole('ROLE_STAFF')"><a href="#">Staff Pages</a>
 								<div class="sub-menu menu-scroll">
 									<ul>
 										<li class="menu-title">Page's</li>
@@ -121,7 +121,7 @@
 										<li><a sec:authorize="isAnonymous()" th:href="@{/login}">Login</a></li>
 										<li><a sec:authorize="isAnonymous()" th:href="@{/register}">Register</a></li>
 										<li><a th:href="@{/catalog}">Catalog</a></li>
-										<li sec:authorize="hasRole('ROLE_USER')"><a href="#">Staff Pages</a>
+										<li sec:authorize="hasRole('ROLE_STAFF')"><a href="#">Staff Pages</a>
 											<ul>
 												<li><a th:href="@{/catalog}">Shop</a></li>
 												<li><a th:href="@{/addProduct}">Add a new Product</a></li>
@@ -170,7 +170,7 @@
 									<div class="panel">
 										<div class="my-account-menu" >
 											<a  data-toggle="collapse" data-parent="#accordion" href="#my-info" >
-											My Personal Information
+											My Orders
 											</a>
 										</div>
 										<div id="my-info" class="panel-collapse collapse in" >
@@ -196,6 +196,42 @@
 													</table>
 												</div>
 											</div>
+										</div>
+									</div>
+								</div>
+								<div class="panel">
+									<div class="my-account-menu" >
+										<a  data-toggle="collapse" data-parent="#accordion" href="#phone-no" >
+										My Phone Numbers
+										</a>
+									</div>
+									<div id="phone-no" class="panel-collapse collapse in" >
+										<div class="panel-body">
+											<div class="our-order payment-details shop-cart-table">
+												<table>
+													<thead>
+														<tr>
+															<th><strong>Number</strong></th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr th:if="${userPhoneNumbers.size() == 0}">
+															<td>No Phones Found</td>
+														</tr>
+														<tr th:each="phone: ${userPhoneNumbers}">
+															<td><span th:text="${phone.phoneNumber}" /></td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+											<form action="/add/phone" method="POST">
+												<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+												<div class="customer-login text-left">
+													<h4 class="title-1 title-border text-uppercase mb-30">Add Phone Number</h4>
+													<input type="number" placeholder="Phone Number" name="phone" required>
+													<button type="submit" data-text="Add" class="button-one submit-button mt-15">Add</button>
+												</div>
+											</form>
 										</div>
 									</div>
 								</div>

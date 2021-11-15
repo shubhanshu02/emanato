@@ -1,19 +1,23 @@
 package com.shubhanshu02.shop.Models;
 
 public class UserPhoneNumber {
-    private String phoneNumber;
+
+    private long phoneNumber;
     private String email;
 
-    public UserPhoneNumber(String phoneNumber, String email) {
+    public UserPhoneNumber(long phoneNumber, String email) {
         this.phoneNumber = phoneNumber;
         this.email = email;
     }
 
-    public String getPhoneNumber() {
+    public UserPhoneNumber() {
+    }
+
+    public long getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
+    public void setPhoneNumber(long phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

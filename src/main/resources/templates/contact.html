@@ -91,7 +91,7 @@
 							<li><a sec:authorize="isAnonymous()" th:href="@{/login}">Login</a></li>
 							<li><a sec:authorize="isAnonymous()" th:href="@{/register}">Register</a></li>
 							<li><a th:href="@{/catalog}">Catalog</a></li>
-							<li sec:authorize="hasRole('ROLE_USER')"><a href="#">Staff Pages</a>
+							<li sec:authorize="hasRole('ROLE_STAFF')"><a href="#">Staff Pages</a>
 								<div class="sub-menu menu-scroll">
 									<ul>
 										<li class="menu-title">Page's</li>
@@ -122,7 +122,7 @@
 										<li><a sec:authorize="isAnonymous()" th:href="@{/login}">Login</a></li>
 										<li><a sec:authorize="isAnonymous()" th:href="@{/register}">Register</a></li>
 										<li><a th:href="@{/catalog}">Catalog</a></li>
-										<li sec:authorize="hasRole('ROLE_USER')"><a href="#">Staff Pages</a>
+										<li sec:authorize="hasRole('ROLE_STAFF')"><a href="#">Staff Pages</a>
 											<ul>
 												<li><a th:href="@{/catalog}">Shop</a></li>
 												<li><a th:href="@{/addProduct}">Add a new Product</a></li>
@@ -189,7 +189,7 @@
 									<!-- Replace these inputs with your own. Make sure they have a "name" attribute! -->
 									<!-- It looks like you are creating a contact form. These email and subject fields are special -->
 									<!-- See https://pageclip.co/docs#special-fields for more info -->
-									<form action="https://send.pageclip.co/ePxQNpgFqevb4C4TXfs0Grk81sGbXipz/Spring_Contact_Form" class="pageclip-form" method="post">
+									<form action="https://formspree.io/f/mnqlevwp" class="pageclip-form" method="post">
 										<h4 class="title-1 title-border text-uppercase mb-30">send message</h4>
 										<input type="text" name="name" placeholder="Your name here..." required />
 										<input type="email" name="email" placeholder="Your email here..." required />
