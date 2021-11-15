@@ -91,11 +91,13 @@
 							<li><a sec:authorize="isAnonymous()" th:href="@{/login}">Login</a></li>
 							<li><a sec:authorize="isAnonymous()" th:href="@{/register}">Register</a></li>
 							<li><a th:href="@{/catalog}">Catalog</a></li>
+							<li><a th:href="@{/offers}">Offers</a></li>
 							<li sec:authorize="hasRole('ROLE_STAFF')"><a href="#">Staff Pages</a>
 								<div class="sub-menu menu-scroll">
 									<ul>
 										<li class="menu-title">Page's</li>
 										<li><a th:href="@{/catalog}">Shop</a></li>
+										<li><a th:href="@{/offers}">Add/View Offers</a></li>
 										<li><a th:href="@{/addProduct}">Add a new Product</a></li>
 										<li><a th:href="@{/categories}">Add/View Categories</a></li>
 									</ul>
@@ -122,9 +124,11 @@
 										<li><a sec:authorize="isAnonymous()" th:href="@{/login}">Login</a></li>
 										<li><a sec:authorize="isAnonymous()" th:href="@{/register}">Register</a></li>
 										<li><a th:href="@{/catalog}">Catalog</a></li>
+							<li><a th:href="@{/offers}">Offers</a></li>
 										<li sec:authorize="hasRole('ROLE_STAFF')"><a href="#">Staff Pages</a>
 											<ul>
 												<li><a th:href="@{/catalog}">Shop</a></li>
+										<li><a th:href="@{/offers}">Add/View Offers</a></li>
 												<li><a th:href="@{/addProduct}">Add a new Product</a></li>
 												<li><a th:href="@{/categories}">Add/View Categories</a></li>
 											</ul>
@@ -249,6 +253,7 @@
 									<h3 class="footer-title  title-border">Products</h3>
 									<ul class="footer-menu">
 										<li><a th:href="@{/catalog}"><i class="zmdi zmdi-dot-circle"></i>Catalog</a></li>
+										<li><a th:href="@{/offers}"><i class="zmdi zmdi-dot-circle"></i>Offers</a></li>
 										<li><a th:href="@{/contact}"><i class="zmdi zmdi-dot-circle"></i>Contact Us</a></li>
 									</ul>
 								</div>
