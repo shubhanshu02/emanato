@@ -16,6 +16,7 @@ import com.shubhanshu02.shop.Repository.ProductRepository;
 import com.shubhanshu02.shop.Services.SecurityService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,6 +39,15 @@ public class OrderController {
 
     @Autowired
     ProductRepository productRepository;
+
+    @GetMapping("/orders")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public String ordersView(Model model) {
+        List<Order> orders = orderRepository.findAllOrders();
+
+        model.addAttribute("orders", orders);
+        return "allOrders";
+    }
 
     @GetMapping("/order/{orderId}")
     public String getOrder(@PathVariable(value = "orderId") int orderId, Model model) {
@@ -64,10 +74,6 @@ public class OrderController {
             return "no";
         }
 
-        for (String nam : request.getParameterMap().keySet()) {
-            System.out.println(nam + " at  " + request.getParameter(nam));
-        }
-
         try {
             String mobile = request.getParameter("mobile");
             String address = request.getParameter("address");
@@ -86,11 +92,30 @@ public class OrderController {
             for (CartItem cartItem : cartItems) {
                 orderRepository.addOrderItem(order.getId(), cartItem);
             }
-            // cartRepository.deleteAllCartItems(userEmail);
+            cartRepository.deleteAllCartItems(userEmail);
             return "/order/" + order.getId() + "/?success";
         } catch (Exception e) {
             return "no";
         }
     }
 
+    @PostMapping("/update/order")
+    @ResponseBody
+    public String updateOrderStatus(WebRequest request) {
+        String userEmail = securityService.findLoggedInUsername();
+        if (userEmail == null) {
+            return "no";
+        }
+
+        try {
+            int orderId = Integer.parseInt(request.getParameter("orderId"));
+            String status = request.getParameter("status");
+            if (!orderRepository.updateOrderStatus(status, orderId)) {
+                return "no";
+            }
+            return "yes";
+        } catch (Exception e) {
+            return "no";
+        }
+    }
 }

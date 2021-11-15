@@ -95,6 +95,7 @@
 									<ul>
 										<li class="menu-title">Page's</li>
 										<li><a th:href="@{/catalog}">Shop</a></li>
+										<li><a th:href="@{/orders}">Orders</a></li>
 										<li><a th:href="@{/offers}">Add/View Offers</a></li>
 										<li><a th:href="@{/addProduct}">Add a new Product</a></li>
 										<li><a th:href="@{/categories}">Add/View Categories</a></li>
@@ -126,6 +127,7 @@
 										<li sec:authorize="hasRole('ROLE_STAFF')"><a href="#">Staff Pages</a>
 											<ul>
 												<li><a th:href="@{/catalog}">Shop</a></li>
+										<li><a th:href="@{/orders}">Orders</a></li>
 										<li><a th:href="@{/offers}">Add/View Offers</a></li>
 												<li><a th:href="@{/addProduct}">Add a new Product</a></li>
 												<li><a th:href="@{/categories}">Add/View Categories</a></li>

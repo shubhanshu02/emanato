@@ -38,14 +38,24 @@ public class OrderRepository {
                 order.getContact());
     }
 
-    public Boolean updateOrderStatus(Order order) {
+    public Boolean updateOrderStatus(String orderStatus, int orderId) {
         String sql = "UPDATE orders SET orderStatus = ? WHERE id = ?";
-        return jdbcTemplate.update(sql, order.getOrderStatus(), order.getId()) == 1;
+        return jdbcTemplate.update(sql, orderStatus, orderId) == 1;
     }
 
     public Boolean deleteOrder(String id) {
         String sql = "DELETE FROM orders WHERE id = ?";
         return jdbcTemplate.update(sql, id) == 1;
+    }
+
+    public List<Order> findAllOrders() {
+        String sql = "SELECT * FROM orders ORDER BY orderDate DESC";
+        return jdbcTemplate.query(sql, (rs, rowNum) -> {
+            Order order = new Order(rs.getInt("id"), rs.getDate("orderDate"), rs.getInt("total"),
+                    rs.getString("orderStatus"), rs.getString("userEmail"), rs.getString("deliveryAddress"),
+                    rs.getString("contact"));
+            return order;
+        });
     }
 
     public List<Order> getAllOrders(String userEmail) {
@@ -75,8 +85,7 @@ public class OrderRepository {
     public List<OrderItem> getOrderItems(int id) {
         String sql = "SELECT * FROM OrderItem WHERE orderId = ?";
         return jdbcTemplate.query(sql, (rs, rowNum) -> {
-            OrderItem orderItem = new OrderItem(rs.getInt("orderId"), rs.getInt("productId"),
-                    rs.getInt("quantity"));
+            OrderItem orderItem = new OrderItem(rs.getInt("orderId"), rs.getInt("productId"), rs.getInt("quantity"));
             return orderItem;
         }, id);
     }

@@ -96,6 +96,7 @@
 									<ul>
 										<li class="menu-title">Page's</li>
 										<li><a th:href="@{/catalog}">Shop</a></li>
+										<li><a th:href="@{/orders}">Orders</a></li>
 										<li><a th:href="@{/offers}">Add/View Offers</a></li>
 										<li><a th:href="@{/addProduct}">Add a new Product</a></li>
 										<li><a th:href="@{/categories}">Add/View Categories</a></li>
@@ -127,6 +128,7 @@
 										<li sec:authorize="hasRole('ROLE_STAFF')"><a href="#">Staff Pages</a>
 											<ul>
 												<li><a th:href="@{/catalog}">Shop</a></li>
+										<li><a th:href="@{/orders}">Orders</a></li>
 										<li><a th:href="@{/offers}">Add/View Offers</a></li>
 												<li><a th:href="@{/addProduct}">Add a new Product</a></li>
 												<li><a th:href="@{/categories}">Add/View Categories</a></li>
@@ -191,8 +193,8 @@
 													<p class="text-uppercase text-light-black mb-0">₹ <strong th:text="${order.total}">$ 170.00</strong></p>
 												</div>
 												<div class="single-order-info">
-													<h4 class="title-1 text-uppercase text-light-black mb-0">payment method</h4>
-													<p class="text-uppercase text-light-black mb-0"><strong>CASH ON DELIVERY</strong></p>
+													<h4 class="title-1 text-uppercase text-light-black mb-0">Order Status</h4>
+													<p class="text-uppercase text-light-black mb-0"><strong th:text="${order.orderStatus}"></strong></p>
 												</div>
 											</div>
 											<div class="shop-cart-table check-out-wrap">
