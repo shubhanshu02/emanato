@@ -10,7 +10,7 @@
 	<groupId>com.shubhanshu02</groupId>
 	<artifactId>shop</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>Shop</name>
 	<description>E-Commerce for Grocery Stores</description>
 	<properties>
