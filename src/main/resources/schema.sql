@@ -81,11 +81,3 @@ CREATE TABLE IF NOT EXISTS Offer (
   productID BIGINT NOT NULL,
   FOREIGN KEY (ProductID) REFERENCES Product(Id)
 );
-
-CREATE TABLE IF NOT EXISTS CartItem (
-  productQuantity INT NOT NULL,
-  productId BIGINT NOT NULL,
-  cartID BIGINT NOT NULL,
-  FOREIGN KEY (productId) REFERENCES Product(Id),
-  FOREIGN KEY (cartId) REFERENCES cart(id)
-);
