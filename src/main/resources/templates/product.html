@@ -103,7 +103,7 @@
 									</ul>
 								</div>
 							</li>
-							<li><a th:href="@{contact}">contact</a></li>
+							<li><a th:href="@{/contact}">contact</a></li>
 							<li><a sec:authorize="isAuthenticated()" th:href="@{/account}">My Account</a></li>
 							<li><a sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a></li>
 						</ul>
@@ -134,7 +134,7 @@
 												<li><a th:href="@{/categories}">Add/View Categories</a></li>
 											</ul>
 										</li>
-										<li><a th:href="@{contact}">contact</a></li>
+										<li><a th:href="@{/contact}">contact</a></li>
 										<li><a sec:authorize="isAuthenticated()" th:href="@{/account}">My Account</a></li>
 										<li><a sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a></li>
 									</ul>

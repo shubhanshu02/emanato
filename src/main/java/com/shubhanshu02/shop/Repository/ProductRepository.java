@@ -65,4 +65,9 @@ public class ProductRepository {
         String sql = "SELECT * FROM Product WHERE categoryId = (SELECT id FROM category WHERE categoryName = ?)";
         return jdbcTemplate.query(sql, productRowMapper, categoryName);
     }
+
+    public Boolean reduceQuantity(int productId, int quantity) {
+        String query = "UPDATE Product SET quantityAvailable = quantityAvailable - ? WHERE id = ?";
+        return jdbcTemplate.update(query, quantity, productId) > 0;
+    }
 }

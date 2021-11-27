@@ -189,7 +189,7 @@
 														<th scope="col">Duration</th>
 														<th scope="col">Discount</th>
 														<th scope="col">Freebies</th>
-														<th scope="col">Delete Action</th>
+														<th scope="col" sec:authorize="hasRole('ROLE_STAFF')">Delete Action</th>
 													  </tr>
 													</thead>
 													<tbody>
@@ -202,7 +202,7 @@
 														<td><span th:text="*{getStartDate}"/> to <span th:text="*{getEndDate}" /></td>
 														<td>₹ <span th:text="*{getDiscount}"/></td>
 														<td><span th:text="*{getFreebies}" /></td>
-														<td>
+														<td sec:authorize="hasRole('ROLE_STAFF')">
 															<button th:onClick="deleteOffer([[${off.getOfferCode}]])" class="btn btn-default" aria-label="Delete" style="user-select: auto;">
 																<i class="zmdi zmdi-close" aria-hidden="true" style="user-select: auto;" ></i>
 															</button>

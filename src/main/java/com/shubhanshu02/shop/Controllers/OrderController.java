@@ -91,6 +91,7 @@ public class OrderController {
             order = orderRepository.getDatabaseOrder(order);
             for (CartItem cartItem : cartItems) {
                 orderRepository.addOrderItem(order.getId(), cartItem);
+                productRepository.reduceQuantity(cartItem.getProductId(), cartItem.getQuantity());
             }
             cartRepository.deleteAllCartItems(userEmail);
             return "/order/" + order.getId() + "/?success";
