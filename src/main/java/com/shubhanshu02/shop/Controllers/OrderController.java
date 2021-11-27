@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.shubhanshu02.shop.Models.CartItem;
 import com.shubhanshu02.shop.Models.Order;
 import com.shubhanshu02.shop.Models.OrderItem;
@@ -42,7 +44,10 @@ public class OrderController {
 
     @GetMapping("/orders")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public String ordersView(Model model) {
+    public String ordersView(Model model, HttpServletRequest request) {
+        if (!request.isUserInRole("ROLE_STAFF")) {
+            return "error/403";
+        }
         List<Order> orders = orderRepository.findAllOrders();
 
         model.addAttribute("orders", orders);

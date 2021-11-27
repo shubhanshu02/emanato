@@ -4,6 +4,8 @@ import org.springframework.stereotype.Controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.shubhanshu02.shop.Models.Category;
 import com.shubhanshu02.shop.Repository.CategoryRepository;
 
@@ -26,7 +28,10 @@ public class CategoryController {
     CategoryRepository categoryRepository;
 
     @GetMapping("/categories")
-    public String categoriesView(Model model) {
+    public String categoriesView(Model model, HttpServletRequest request) {
+        if (!request.isUserInRole("ROLE_STAFF")) {
+            return "error/403";
+        }
         List<Category> categories = categoryRepository.findAll();
         model.addAttribute("categories", categories);
         model.addAttribute("category", new Category());

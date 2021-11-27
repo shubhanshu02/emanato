@@ -184,14 +184,14 @@
 													  <tr>
 														<th scope="col">Category</th>
 														<th scope="col">Supplier</th>
-														<th scope="col">Delete Action</th>
+														<th sec:authorize="hasRole('ROLE_STAFF')" scope="col">Delete Action</th>
 													  </tr>
 													</thead>
 													<tbody>
 													  <tr th:each="cat: ${categories}" th:object="${cat}">
 														<td><strong th:text="*{getCategoryName}" /></td>
 														<td><span th:text="*{getSupplierName}"></td>
-														<td>
+														<td sec:authorize="hasRole('ROLE_STAFF')">
 															<button th:onClick="deleteCategory([[${cat.getCategoryName}]], [[${cat.getSupplierName}]])" class="btn btn-default" aria-label="Delete" style="user-select: auto;">
 																<i class="zmdi zmdi-close" aria-hidden="true" style="user-select: auto;" ></i>
 															</button>
@@ -200,7 +200,7 @@
 													</tbody>
 												</table>
 											</div>
-											<div class="leave-review">
+											<div class="leave-review" sec:authorize="hasRole('ROLE_STAFF')">
 												<h3 class="tab-title title-border mb-30">Add New Category?</h3>
 												<div class="reply-box">
 													<form th:action="@{/categories}" th:object="${category}" method="post">

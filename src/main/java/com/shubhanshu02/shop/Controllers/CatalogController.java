@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.shubhanshu02.shop.FileUploadUtil;
 import com.shubhanshu02.shop.Models.Category;
 import com.shubhanshu02.shop.Models.Product;
@@ -43,7 +45,10 @@ public class CatalogController {
     }
 
     @GetMapping("/addProduct")
-    public String addProduct(Model model) {
+    public String addProduct(Model model, HttpServletRequest request) {
+        if (!request.isUserInRole("ROLE_STAFF")) {
+            return "error/403";
+        }
 
         List<Category> categories = categoryRepository.findAll();
         if (categories.size() == 0) {
